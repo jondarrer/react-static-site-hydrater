@@ -1,8 +1,10 @@
 language: node_js
 node_js:
-- 12.14.1
+  - 12.14.1
 deploy:
   provider: npm
   email: jonny@jondarrer.me.uk
+  on:
+    tags: true
   api_key:
     secure: P9pZTiAGWCM2k7ZG7Mamtyp/tlGLN6dp518Rf07mAN7u6vBXe3TOn6qIcCIBOY899+zodyxEfvdaeImdcyCTUwSpi8dkMxe6LZMfLONF3eUia4Gpc8VKAdWQPb76g/oxgki21nst/H+bUP0wQYlRlAqxSNhVK/Sg5O+mNI55a0+OcGaLxriZOzdV0RRdcDjkxUX+tNZu4S6HIBcJdp9ZCjxDCkSxOFNp9w3XcIgsZnpAD1Hfkx3A793nxSMHKIKHSoK3m49OAx5T0111W5ITWTscse5bpjdnW/rTP56b1w6jrCnrWdQHPHdKUVGbpvWkdlGf0F4Fb02o3nfB75xjvHzKpRtS0Cgp9UqWGtNIuBUcrK0nAak47QLxm+aPZyzo3aasrOiCsl1B0YYQ0hBk9ZSJFsIpBkIaqeDHWba6EMgpU/kNP/A0G9JluoNgDU05ceCrBUV3BmqpnVS4ahFDrJ1vjWdD9jss0lTi/LmbeLrJi3/iItmABfY/rY5TXB2MlAqljo/Zbt3roCvynpyAxY7+r+9Lj0cO/7/zNHvwsocrJAZp/V1Ws5KnjpfIbZ+SJ/ughjy0UcLcMH0ScLDpv9Hh5/I8zHYINWMTXCT8ajlRdHWExMCJdR6LLk2J5nGCheby2YJuoR4eNZMSnCMQXVq2iJ15eSE7bfnyZwoujFw=
