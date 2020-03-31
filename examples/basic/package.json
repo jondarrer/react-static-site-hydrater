@@ -1,0 +1,17 @@
+{
+  "name": "react-static-site-hydrater-example-basic",
+  "version": "1.0.0",
+  "description": "A basic example project for the react-static-site-hydrater webpack plugin",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "html-webpack-plugin": "^4.0.3",
+    "prettier": "2.0.2",
+    "webpack": "4.42.1",
+    "webpack-cli": "3.3.11"
+  },
+  "keywords": []
+}
