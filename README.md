@@ -101,6 +101,6 @@ and tagged in Git using the [npm version](https://docs.npmjs.com/cli/version)
 tool:
 
 ```bash
-npm version {patch/minor/major} -m ":label: Update release version to %s"
+npm version {patch/minor/major} -m ":bookmark: Update release version to %s"
 git push --tags
 ```
