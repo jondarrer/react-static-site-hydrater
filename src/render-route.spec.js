@@ -1,14 +1,49 @@
 /* global describe it expect */
-const ReactDOMServer = require('react-dom/server');
+const React = require('react');
+const { Route, Switch } = require('react-router-dom');
+
 const renderRoute = require('./render-route');
 
-jest.mock('react-dom/server');
-
 describe('renderRoute', () => {
-  it('should render the route by calling ReactDOMServer.renderToString', () => {
-    const renderedContent = 'the-content';
-    ReactDOMServer.renderToString.mockResolvedValue(renderedContent);
-    result = renderRoute(route, indexHtml);
-    expect(ReactDOMServer.renderToString).toBeCalled();
+  const indexHtml = '<html><body><div id="root"></div></body></html>';
+  const component = (
+    <Switch>
+      <Route path="/" exact>
+        <h1>index-content</h1>
+      </Route>
+      <Route path="/about">
+        <h1>about-content</h1>
+      </Route>
+      <Route>
+        <h1>not-found</h1>
+      </Route>
+    </Switch>
+  );
+
+  it('should render the index route for /', () => {
+    const route = '/';
+    const renderedContent = '<h1>index-content</h1>';
+    result = renderRoute(route, indexHtml, component);
+    expect(result).toBe(
+      `<html><body><div id="root">${renderedContent}</div></body></html>`
+    );
+  });
+
+  it('should render the about route for /about', () => {
+    const route = '/about';
+    const renderedContent = '<h1>about-content</h1>';
+    result = renderRoute(route, indexHtml, component);
+    expect(result).toBe(
+      `<html><body><div id="root">${renderedContent}</div></body></html>`
+    );
+  });
+
+  it('should render the not-found route for /unknown', () => {
+    const route = '/unknown';
+    const renderedContent = '<h1>not-found</h1>';
+    result = renderRoute(route, indexHtml, component);
+    expect(result).toBe(
+      `<html><body><div id="root">${renderedContent}</div></body></html>`
+    );
   });
 });

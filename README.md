@@ -83,6 +83,8 @@ above:
 git clone git@github.com:jondarrer/react-static-site-hydrater
 cd react-static-site-hydrater
 npm install
+# Also install peer dependencies
+npm install prop-types react react-dom react-router-dom webpack --no-save
 ```
 
 ### Test
