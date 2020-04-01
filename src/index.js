@@ -10,10 +10,14 @@ class ReactStaticSiteHydrater {
     compiler.hooks.emit.tapAsync(
       'ReactStaticSiteHydrater',
       (compilation, callback) => {
+        const { routes, componentPath } = this.options;
+        let { component } = this.options;
+        component = component || require(componentPath);
         const baseHtml = compilation.getAsset('index.html');
         const additionalAssets = renderAllRoutes(
-          this.options.routes,
-          baseHtml.source.source()
+          routes,
+          baseHtml.source.source(),
+          component
         );
         additionalAssets.forEach((asset) => {
           const filename = routeToFileName(asset.route);
