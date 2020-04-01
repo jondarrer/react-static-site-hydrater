@@ -1,6 +1,6 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactStaticSiteHydrater = require('../../src');
+const ReactStaticSiteHydrater = require('../../');
 
 module.exports = {
   entry: resolve(__dirname, './src/index.js'),
