@@ -95,6 +95,12 @@ Tests are run using Jest.
 npm test
 ```
 
+### Build
+
+```bash
+npm run build
+```
+
 ### Publish
 
 Travis CI is the integration tool used to publish the package. It will publish

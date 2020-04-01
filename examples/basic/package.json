@@ -10,6 +10,10 @@
   "devDependencies": {
     "html-webpack-plugin": "^4.0.3",
     "prettier": "2.0.2",
+    "prop-types": "^15.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router-dom": "^5.0.0",
     "webpack": "4.42.1",
     "webpack-cli": "3.3.11"
   },
