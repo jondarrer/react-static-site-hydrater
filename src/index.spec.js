@@ -24,7 +24,7 @@ describe('ReactStaticSiteHydrater', () => {
     });
     it('it should add the configured routes as assets', (done) => {
       assets = {
-        'index.html': { source: { source: () => {} }, size: () => {} },
+        'index.html': { source: { source: () => 'abc' }, size: () => {} },
       };
       tapAsync.mockImplementation((name, emitCB) => {
         expect(name).toBe('ReactStaticSiteHydrater');
