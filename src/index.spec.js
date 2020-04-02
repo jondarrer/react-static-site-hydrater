@@ -1,4 +1,6 @@
 /* global describe it expect */
+const React = require('react');
+
 const ReactStaticSiteHydrater = require('./');
 
 describe('ReactStaticSiteHydrater', () => {
@@ -34,7 +36,10 @@ describe('ReactStaticSiteHydrater', () => {
         expect(assets['__about.html']).toBeDefined();
         done();
       });
-      const sut = new ReactStaticSiteHydrater({ routes: ['/', '/about'] });
+      const sut = new ReactStaticSiteHydrater({
+        routes: ['/', '/about'],
+        component: () => <div />,
+      });
       sut.apply(compiler);
     });
   });

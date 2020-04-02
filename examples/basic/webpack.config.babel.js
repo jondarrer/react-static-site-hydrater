@@ -4,8 +4,6 @@ const ReactStaticSiteHydrater = require('../../');
 
 const app = require('./src/index.js');
 
-console.log({ app });
-
 module.exports = {
   entry: resolve(__dirname, './src/index.js'),
   output: {

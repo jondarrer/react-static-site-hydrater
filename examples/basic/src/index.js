@@ -1,7 +1,7 @@
 const React = require('react');
 const { Route, Switch } = require('react-router-dom');
 
-const BasicExample = (
+const BasicExample = () => (
   <Switch>
     <Route path="/" exact>
       <h1>index-content</h1>

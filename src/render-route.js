@@ -2,10 +2,10 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const { StaticRouter } = require('react-router-dom');
 
-const renderRoute = (route, indexHtml, component) => {
+const renderRoute = (route, indexHtml, Component) => {
   const renderedComponent = ReactDOMServer.renderToString(
     <StaticRouter location={route} context={{}}>
-      {component}
+      <Component />
     </StaticRouter>
   );
   return indexHtml.replace(

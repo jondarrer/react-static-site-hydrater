@@ -20,10 +20,13 @@ to generate:
 ```js
 const ReactStaticSiteHydraterPlugin = require('react-static-site-hydrater');
 
+const app = require('./src/app.js');
+
 module.exports = {
   plugins: [
     new ReactStaticSiteHydraterPlugin({
       routes: ['/', '/about', '/contact-us'],
+      component: app,
     }),
   ],
 };
