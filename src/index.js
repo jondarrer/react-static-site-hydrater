@@ -4,15 +4,15 @@ const routeToFileName = require('./route-to-filename');
 class ReactStaticSiteHydrater {
   constructor(options) {
     this.options = options;
+    this.options.component =
+      options.component || require(options.componentPath);
   }
 
   apply(compiler) {
     compiler.hooks.emit.tapAsync(
       'ReactStaticSiteHydrater',
       (compilation, callback) => {
-        const { routes, componentPath } = this.options;
-        let { component } = this.options;
-        component = component || require(componentPath);
+        const { routes, component } = this.options;
         const baseHtml = compilation.getAsset('index.html');
         const additionalAssets = renderAllRoutes(
           routes,
