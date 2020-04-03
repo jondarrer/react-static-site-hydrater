@@ -20,17 +20,19 @@ to generate:
 ```js
 const ReactStaticSiteHydraterPlugin = require('react-static-site-hydrater');
 
-const app = require('./src/app.js');
+const App = require('./src/app');
 
 module.exports = {
   plugins: [
     new ReactStaticSiteHydraterPlugin({
       routes: ['/', '/about', '/contact-us'],
-      component: app,
+      component: App,
     }),
   ],
 };
 ```
+
+NB. See the [examples](./examples) folder for working sample applications.
 
 This will generate the static site within the output folder (here _dist_):
 

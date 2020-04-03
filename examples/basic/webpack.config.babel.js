@@ -1,11 +1,11 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactStaticSiteHydrater = require('../../');
+const ReactStaticSiteHydrater = require('../../').default;
 
-const app = require('./src/index.js');
+const App = require('./src/app');
 
 module.exports = {
-  entry: resolve(__dirname, './src/index.js'),
+  entry: resolve(__dirname, './src'),
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -24,8 +24,7 @@ module.exports = {
     new HtmlWebpackPlugin(),
     new ReactStaticSiteHydrater({
       routes: ['/', '/about', '/contact-us'],
-      component: app,
-      // componentPath: resolve(__dirname, 'src'),
+      component: App,
     }),
   ],
 };
