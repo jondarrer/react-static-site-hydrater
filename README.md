@@ -18,13 +18,15 @@ plugin to your webpack configuration as follows, along with the routes you want
 to generate:
 
 ```js
-const ReactStaticSiteHydraterPlugin = require('react-static-site-hydrater');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactStaticSiteHydrater = require('react-static-site-hydrater').default;
 
 const App = require('./src/app');
 
 module.exports = {
   plugins: [
-    new ReactStaticSiteHydraterPlugin({
+    new HtmlWebpackPlugin(),
+    new ReactStaticSiteHydrater({
       routes: ['/', '/about', '/contact-us'],
       component: App,
     }),
