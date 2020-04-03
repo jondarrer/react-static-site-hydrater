@@ -1,6 +1,6 @@
 {
   "name": "react-static-site-hydrater-example-basic",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A basic example project for the react-static-site-hydrater webpack plugin",
   "main": "./src/index.js",
   "scripts": {
