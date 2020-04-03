@@ -1,7 +1,7 @@
 /* global describe it expect */
-const React = require('react');
+import React from 'react';
 
-const ReactStaticSiteHydrater = require('./');
+import ReactStaticSiteHydrater from './';
 
 describe('ReactStaticSiteHydrater', () => {
   const tapAsync = jest.fn();
@@ -25,7 +25,7 @@ describe('ReactStaticSiteHydrater', () => {
       callback.mockClear();
     });
     it('it should add the configured routes as assets', (done) => {
-      assets = {
+      const assets = {
         'index.html': { source: { source: () => 'abc' }, size: () => {} },
       };
       tapAsync.mockImplementation((name, emitCB) => {

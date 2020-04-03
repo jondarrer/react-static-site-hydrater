@@ -1,5 +1,5 @@
-const renderAllRoutes = require('./render-all-routes');
-const routeToFileName = require('./route-to-filename');
+import renderAllRoutes from './render-all-routes';
+import routeToFileName from './route-to-filename';
 
 class ReactStaticSiteHydrater {
   constructor(options) {
@@ -36,4 +36,4 @@ class ReactStaticSiteHydrater {
   }
 }
 
-module.exports = ReactStaticSiteHydrater;
+export default ReactStaticSiteHydrater;

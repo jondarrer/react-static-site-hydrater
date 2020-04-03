@@ -1,5 +1,5 @@
 /* global describe it expect */
-const routeToFilename = require('./route-to-filename');
+import routeToFilename from './route-to-filename';
 
 describe('routeToFilename', () => {
   it('should convert / to __index.html', () => {

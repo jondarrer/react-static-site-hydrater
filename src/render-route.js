@@ -1,6 +1,6 @@
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const { StaticRouter } = require('react-router-dom');
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 
 const renderRoute = (route, indexHtml, Component) => {
   const renderedComponent = ReactDOMServer.renderToString(
@@ -14,4 +14,4 @@ const renderRoute = (route, indexHtml, Component) => {
   );
 };
 
-module.exports = renderRoute;
+export default renderRoute;

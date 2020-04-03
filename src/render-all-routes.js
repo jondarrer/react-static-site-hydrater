@@ -1,4 +1,4 @@
-const renderRoute = require('./render-route');
+import renderRoute from './render-route';
 
 const renderAllRoutes = (routes, indexHtml, component) => {
   return routes.map((route) => {
@@ -7,4 +7,4 @@ const renderAllRoutes = (routes, indexHtml, component) => {
   });
 };
 
-module.exports = renderAllRoutes;
+export default renderAllRoutes;
