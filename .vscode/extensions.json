@@ -13,7 +13,8 @@
     "eamodio.gitlens",
     "esbenp.prettier-vscode",
     "pflannery.vscode-versionlens",
-    "orta.vscode-jest"
+    "orta.vscode-jest",
+    "digitalbrainstem.javascript-ejs-support"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": ["dzannotti.vscode-babel-coloring"]
