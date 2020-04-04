@@ -25,8 +25,11 @@ describe('ReactStaticSiteHydrater', () => {
       callback.mockClear();
     });
     it('it should add the configured routes as assets', (done) => {
-      const assets = {
-        'index.html': { source: { source: () => 'abc' }, size: () => {} },
+      const baseFilename = 'xyz.html';
+      const assets = {};
+      assets[baseFilename] = {
+        source: { source: () => 'abc' },
+        size: () => {},
       };
       tapAsync.mockImplementation((name, emitCB) => {
         expect(name).toBe('ReactStaticSiteHydrater');
@@ -39,6 +42,7 @@ describe('ReactStaticSiteHydrater', () => {
       const sut = new ReactStaticSiteHydrater({
         routes: ['/', '/about'],
         component: () => <div />,
+        baseFilename,
       });
       sut.apply(compiler);
     });

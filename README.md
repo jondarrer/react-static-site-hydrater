@@ -1,7 +1,9 @@
 # react-static-site-hydrater
 
+## 🚧 This plugin is currently a work in progress 🚧
+
 A Webpack plugin to hydrate static React sites using ReactDOM.hydrate to
-pre-build the static site
+pre-build the static site.
 
 ## Usage
 
@@ -15,7 +17,8 @@ npm install --save-dev react-static-site-hydrater
 
 The plugin will generate HTML5 files for the routes you specify. Just add the
 plugin to your webpack configuration as follows, along with the routes you want
-to generate:
+to generate. It works in conjunction with
+[html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin):
 
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -81,6 +84,21 @@ above:
   }
 }
 ```
+
+## Options
+
+|        Name        |       Type        |  Default   | Description                                                     |
+| :----------------: | :---------------: | :--------: | :-------------------------------------------------------------- |
+|    **`routes`**    | `{Array<String>}` |     []     | The routes to build (e.g. ['/', '/about', '/contact-us'])       |
+|  **`component`**   |   `{Component}`   |            | The React component with the routing/Switch, but not the Router |
+| **`baseFilename`** |    `{String}`     | index.html | The name of the file produced by html-webpack-plugin            |
+
+## Remaining features to be implemented
+
+This plugin is not yet feature complete. It requires the following to be
+implemented:
+
+- Generation of the _./firebase.json_ file
 
 ## Developing
 

@@ -21,10 +21,11 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({ filename: 'default.html' }),
     new ReactStaticSiteHydrater({
       routes: ['/', '/about', '/404-not-found'],
       component: App,
+      baseFilename: 'default.html',
     }),
   ],
 };

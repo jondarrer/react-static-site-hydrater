@@ -4,16 +4,14 @@ import routeToFileName from './route-to-filename';
 class ReactStaticSiteHydrater {
   constructor(options) {
     this.options = options;
-    this.options.component =
-      options.component || require(options.componentPath);
   }
 
   apply(compiler) {
     compiler.hooks.emit.tapAsync(
       'ReactStaticSiteHydrater',
       (compilation, callback) => {
-        const { routes, component } = this.options;
-        const baseHtml = compilation.getAsset('index.html');
+        const { routes, component, baseFilename = 'index.html' } = this.options;
+        const baseHtml = compilation.getAsset(baseFilename);
         const additionalAssets = renderAllRoutes(
           routes,
           baseHtml.source.source(),
