@@ -87,11 +87,10 @@ above:
 
 ## Options
 
-|        Name        |       Type        |  Default   | Description                                                     |
-| :----------------: | :---------------: | :--------: | :-------------------------------------------------------------- |
-|    **`routes`**    | `{Array<String>}` |     []     | The routes to build (e.g. ['/', '/about', '/contact-us'])       |
-|  **`component`**   |   `{Component}`   |            | The React component with the routing/Switch, but not the Router |
-| **`baseFilename`** |    `{String}`     | index.html | The name of the file produced by html-webpack-plugin            |
+|      Name       |       Type        | Default | Description                                                     |
+| :-------------: | :---------------: | :-----: | :-------------------------------------------------------------- |
+|  **`routes`**   | `{Array<String>}` |   []    | The routes to build (e.g. ['/', '/about', '/contact-us'])       |
+| **`component`** |   `{Component}`   |         | The React component with the routing/Switch, but not the Router |
 
 ## Remaining features to be implemented
 
