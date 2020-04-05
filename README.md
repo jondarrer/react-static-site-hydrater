@@ -2,6 +2,8 @@
 
 ## 🚧 This plugin is currently a work in progress 🚧
 
+[![Build Status](https://travis-ci.com/jondarrer/react-static-site-hydrater.svg?branch=master)](https://travis-ci.com/jondarrer/react-static-site-hydrater)
+
 A Webpack plugin to hydrate static React sites using ReactDOM.hydrate to
 pre-build the static site.
 
