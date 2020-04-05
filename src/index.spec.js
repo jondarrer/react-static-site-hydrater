@@ -4,12 +4,29 @@ import React from 'react';
 import ReactStaticSiteHydrater from './';
 
 describe('ReactStaticSiteHydrater', () => {
-  const tapAsync = jest.fn();
+  const tapMakePromise = jest.fn();
+  const tapAfterEmitAsync = jest.fn();
   const compiler = {
     hooks: {
-      emit: {
-        tapAsync,
+      make: {
+        tapPromise: tapMakePromise,
       },
+    },
+    options: {
+      plugins: [
+        {
+          constructor: {
+            name: 'HtmlWebpackPlugin',
+            getHooks: () => {
+              return {
+                afterEmit: {
+                  tapAsync: tapAfterEmitAsync,
+                },
+              };
+            },
+          },
+        },
+      ],
     },
   };
   const createCompilation = (assets) => {
@@ -18,25 +35,33 @@ describe('ReactStaticSiteHydrater', () => {
       getAsset: (name) => assets[name],
     };
   };
-  const callback = jest.fn();
+  const baseFilename = 'xyz.html';
+  const createHtmlPluginData = () => {
+    return { plugin: { options: {} }, outputName: baseFilename };
+  };
+  const htmlWebpackPluginCallback = jest.fn();
   describe('apply', () => {
     beforeEach(() => {
-      tapAsync.mockClear();
-      callback.mockClear();
+      tapMakePromise.mockClear();
+      tapAfterEmitAsync.mockClear();
+      htmlWebpackPluginCallback.mockClear();
     });
     it('it should add the configured routes as assets', (done) => {
-      const baseFilename = 'xyz.html';
       const assets = {};
       assets[baseFilename] = {
         source: { source: () => 'abc' },
         size: () => {},
       };
-      tapAsync.mockImplementation((name, emitCB) => {
+      tapMakePromise.mockImplementation((name, makeCallback) => {
         expect(name).toBe('ReactStaticSiteHydrater');
-        emitCB(createCompilation(assets), callback);
-        expect(callback).toBeCalled();
+        return makeCallback(createCompilation(assets));
+      });
+      tapAfterEmitAsync.mockImplementation((name, afterEmitAsync) => {
+        expect(name).toBe('ReactStaticSiteHydrater');
+        afterEmitAsync(createHtmlPluginData(), htmlWebpackPluginCallback);
         expect(assets['__index.html']).toBeDefined();
         expect(assets['__about.html']).toBeDefined();
+        expect(htmlWebpackPluginCallback).toBeCalled();
         done();
       });
       const sut = new ReactStaticSiteHydrater({
@@ -45,6 +70,7 @@ describe('ReactStaticSiteHydrater', () => {
         baseFilename,
       });
       sut.apply(compiler);
+      expect(tapMakePromise).toBeCalled();
     });
   });
 });

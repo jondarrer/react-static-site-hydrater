@@ -33,6 +33,10 @@ module.exports = {
       react: resolve(__dirname, './node_modules/react'),
       'react-dom': resolve(__dirname, './node_modules/react-dom'),
       'react-router-dom': resolve(__dirname, './node_modules/react-router-dom'),
+      'react-helmet-async': resolve(
+        __dirname,
+        './node_modules/react-helmet-async'
+      ),
     },
   },
   externals: {
@@ -54,6 +58,12 @@ module.exports = {
       commonjs2: 'react-router-dom',
       amd: 'ReactRouterDOM',
       root: 'ReactRouterDOM',
+    },
+    'react-helmet-async': {
+      commonjs: 'react-helmet-async',
+      commonjs2: 'react-helmet-async',
+      amd: 'ReactHelmetAsync',
+      root: 'ReactHelmetAsync',
     },
   },
 };
