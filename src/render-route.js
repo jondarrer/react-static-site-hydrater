@@ -30,7 +30,7 @@ const renderRoute = (route, indexHtml, Component) => {
     appendAttrsTo(body, helmet, 'body');
   }
   return (
-    '<!DOCTYPE html>\r\n' +
+    '<!DOCTYPE html>\n' +
     root
       .toString()
       .replace(
