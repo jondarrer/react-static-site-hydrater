@@ -29,12 +29,15 @@ const renderRoute = (route, indexHtml, Component) => {
     const body = root.querySelector('body');
     appendAttrsTo(body, helmet, 'body');
   }
-  return root
-    .toString()
-    .replace(
-      '<div id="root"></div>',
-      `<div id="root">${renderedComponent}</div>`
-    );
+  return (
+    '<!DOCTYPE html>\r\n' +
+    root
+      .toString()
+      .replace(
+        '<div id="root"></div>',
+        `<div id="root">${renderedComponent}</div>`
+      )
+  );
 };
 
 export default renderRoute;
