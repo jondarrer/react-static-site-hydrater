@@ -11,4 +11,9 @@ describe('attrsToObject', () => {
       bla: '123',
     });
   });
+  it('should extract {class: "class-1 class-2"} from ~lang="class-1 class-2"', () => {
+    expect(attrsToObject('class="class-1 class-2"')).toEqual({
+      class: 'class-1 class-2',
+    });
+  });
 });
