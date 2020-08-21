@@ -14,3 +14,5 @@ const BasicExample = () => (
 );
 
 ReactDOM.hydrate(BasicExample, document.getElementById('root'));
+
+module.exports = App;
