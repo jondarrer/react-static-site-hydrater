@@ -53,8 +53,8 @@ const postRender = (context, renderedComponent, indexHtml) => {
  * @param {Hooks} hooks
  */
 const renderRouteWithHelmet = (hooks) => {
-  hooks.prepare.push(prepare);
-  hooks.postRender.push(postRender);
+  hooks.prepare(prepare);
+  hooks.postRender(postRender);
 };
 
 export default renderRouteWithHelmet;
