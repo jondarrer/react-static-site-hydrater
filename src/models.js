@@ -19,8 +19,18 @@ export const fake = 0;
  */
 
 /**
+ * @callback PrepareHook
+ * @param {PrepareCallback} prepareCallback The prepare hook callback
+ */
+
+/**
+ * @callback PostRenderHook
+ * @param {PostRenderCallback} postRenderCallback The postRender hook callback
+ */
+
+/**
  *
  * @typedef {Object} Hooks
- * @property {Array<PrepareCallback>} prepare The prepare hook, called before the
- * @property {Array<PostRenderCallback>} postRender The postRender hook, called after the React component has been rendered
+ * @property {PrepareHook} prepare The prepare hook, called before rendering
+ * @property {PostRenderHook} postRender The postRender hook, called after the React component has been rendered
  */

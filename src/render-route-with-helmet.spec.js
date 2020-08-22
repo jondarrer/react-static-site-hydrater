@@ -25,8 +25,8 @@ describe('renderRouteWithHelmet', () => {
       }
     );
     hooks = {
-      prepare: [],
-      postRender: [],
+      prepare: jest.fn(),
+      postRender: jest.fn(),
     };
     wrapComponent = jest.fn();
   });
@@ -34,7 +34,7 @@ describe('renderRouteWithHelmet', () => {
   describe('prepare', () => {
     it('should add a prepare hook', () => {
       renderRouteWithHelmet(hooks);
-      expect(hooks.prepare).toHaveLength(1);
+      expect(hooks.prepare).toHaveBeenCalledWith(prepare);
     });
 
     it('should add a helmetContext', () => {
@@ -45,7 +45,6 @@ describe('renderRouteWithHelmet', () => {
     });
 
     it('should call wrapComponent with HelmetProvider', () => {
-      renderRouteWithHelmet(hooks);
       const context = {};
       prepare.apply(null, [context, wrapComponent]);
       expect(wrapComponent).toHaveBeenCalledWith({
@@ -60,7 +59,7 @@ describe('renderRouteWithHelmet', () => {
   describe('postRender', () => {
     it('should add a postRender hook', () => {
       renderRouteWithHelmet(hooks);
-      expect(hooks.postRender).toHaveLength(1);
+      expect(hooks.postRender).toHaveBeenCalledWith(postRender);
     });
 
     it('should add the title tag', () => {
