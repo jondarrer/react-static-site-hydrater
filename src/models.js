@@ -29,8 +29,18 @@ export const fake = 0;
  */
 
 /**
- *
  * @typedef {Object} Hooks
  * @property {PrepareHook} prepare The prepare hook, called before rendering
  * @property {PostRenderHook} postRender The postRender hook, called after the React component has been rendered
+ */
+
+/**
+ * @callback Plugin
+ * @param {Hooks} hooks The hooks to which the plugin can attach
+ */
+
+/**
+ * @typedef {Object} PluginWithName
+ * @property {String} name The name of the plugin
+ * @property {Plugin} plugin The plugin
  */
