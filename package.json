@@ -51,6 +51,8 @@
     "webpack-cli": "^3.3.11"
   },
   "peerDependencies": {
+    "@apollo/client": "^3.0.0",
+    "graphql": "^15.0.0",
     "html-webpack-plugin": "^4.0.0",
     "prop-types": "^15.0.0",
     "react": "^16.0.0",
