@@ -37,6 +37,7 @@ module.exports = {
         __dirname,
         './node_modules/react-helmet-async'
       ),
+      '@apollo/client': resolve(__dirname, './node_modules/@apollo/client'),
     },
   },
   externals: {
@@ -64,6 +65,12 @@ module.exports = {
       commonjs2: 'react-helmet-async',
       amd: 'ReactHelmetAsync',
       root: 'ReactHelmetAsync',
+    },
+    '@apollo/client': {
+      commonjs: '@apollo/client',
+      commonjs2: '@apollo/client',
+      amd: 'ApolloClient',
+      root: 'ApolloClient',
     },
   },
 };
