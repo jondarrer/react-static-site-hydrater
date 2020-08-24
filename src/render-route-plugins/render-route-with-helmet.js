@@ -6,7 +6,7 @@ import { appendChildTo, appendAttrsTo } from '../utils';
 /**
  * Applies Helmet tags to the SSR rendered output
  */
-const renderRouteWithHelmet = {
+const RenderRouteWithHelmet = {
   /**
    * Add helmetContext to the context
    *

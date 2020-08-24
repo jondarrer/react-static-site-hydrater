@@ -10,13 +10,13 @@ describe('RenderRouteWithHelmet', () => {
 
   beforeEach(() => {
     indexHtml = fs.readFileSync(
-      resolve(__dirname, './test-assets/index.html'),
+      resolve(__dirname, '../test-assets/index.html'),
       {
         encoding: 'utf8',
       }
     );
     indexEjsWithoutDoctype = fs.readFileSync(
-      resolve(__dirname, './test-assets/index-without-doctype.ejs'),
+      resolve(__dirname, '../test-assets/index-without-doctype.ejs'),
       {
         encoding: 'utf8',
       }
