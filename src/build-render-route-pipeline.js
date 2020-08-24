@@ -1,5 +1,8 @@
 /**
  * Build the execution pipeline for rendering a route
+ *
+ * @type {Array<import("./models").Plugin>}
+ * @return {import("./models").Pipeline}
  */
 const buildRenderRoutePipeline = (plugins) => {
   const pipeline = [];
@@ -40,6 +43,18 @@ const buildRenderRoutePipeline = (plugins) => {
         return {
           ...plugin,
           hookName: 'postRender',
+        };
+      })
+  );
+
+  // finalise
+  pipeline.push(
+    ...plugins
+      .filter(({ plugin }) => Reflect.has(plugin, 'finalise'))
+      .map((plugin) => {
+        return {
+          ...plugin,
+          hookName: 'finalise',
         };
       })
   );

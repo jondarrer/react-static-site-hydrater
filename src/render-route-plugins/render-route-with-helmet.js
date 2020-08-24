@@ -10,8 +10,7 @@ const RenderRouteWithHelmet = {
   /**
    * Add helmetContext to the context
    *
-   * @param {any} context
-   * @param {Function} wrapComponent
+   * @type {import('../models').PrepareCallback}
    */
   prepare: (context, wrapComponent) => {
     context.helmetContext = {};
@@ -26,9 +25,9 @@ const RenderRouteWithHelmet = {
   /**
    * Adds the Helmet tags to the rendered component
    *
-   * @param {any} context
+   * @type {import('../models').PostRenderCallback}
    */
-  postRender: (context, renderedComponent, indexHtml) => {
+  postRender: (context, _renderedComponent, indexHtml) => {
     const root = parse(indexHtml);
 
     const { helmet } = context.helmetContext;

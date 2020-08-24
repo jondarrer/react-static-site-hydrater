@@ -6,31 +6,54 @@ export const fake = 0;
  */
 
 /**
+ * Called before rendering a route
+ *
  * @callback PrepareCallback
  * @param {Any} context The context
  * @param {WrapComponentCallback} wrapComponent Wrap the component in another
  */
 
 /**
+ * Called to render the React component for the route
+ *
+ * @callback RenderCallback
+ * @param {Object} wrappedComponent The context
+ * @return {String} The rendered wrapped component
+ */
+
+/**
+ * Called after the React component has been rendered for a route and returns the index html
+ *
  * @callback PostRenderCallback
  * @param {Any} context The context
  * @param {String} renderedComponent The rendered component
- * @return {String} The re-rendered component
+ * @param {String} indexHtml The index html
+ * @return {String} The re-rendered index
  */
 
 /**
- * @callback PrepareHook
- * @param {PrepareCallback} prepareCallback The prepare hook callback
- */
-
-/**
- * @callback PostRenderHook
- * @param {PostRenderCallback} postRenderCallback The postRender hook callback
- */
-
-/**
+ * Called after the React component has been rendered for a route
  *
- * @typedef {Object} Hooks
- * @property {PrepareHook} prepare The prepare hook, called before rendering
- * @property {PostRenderHook} postRender The postRender hook, called after the React component has been rendered
+ * @callback FinaliseCallback
+ * @param {Any} context The context
+ * @param {String} renderedComponent The rendered component
+ * @param {String} indexHtml The index html
+ * @return {String} The final rendered component
+ */
+
+/**
+ * @typedef {Object} Plugin
+ * @property {String} name The prepare hook, called before rendering
+ * @property {Plugin} plugin The postRender hook, called after the React component has been rendered
+ */
+
+/**
+ * @typedef {Object} PipelinePluginHook
+ * @property {String} name The prepare hook, called before rendering
+ * @property {Plugin} plugin The postRender hook, called after the React component has been rendered
+ * @property {String} hookName The postRender hook, called after the React component has been rendered
+ */
+
+/**
+ * @typedef {Array<PipelinePluginHook>} Pipeline
  */

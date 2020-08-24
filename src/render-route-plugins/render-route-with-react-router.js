@@ -7,8 +7,7 @@ const RenderRouteWithReactRouter = {
   /**
    * Add helmetContext to the context
    *
-   * @param {any} context
-   * @param {Function} wrapComponent
+   * @type {import('../models').PrepareCallback}
    */
   prepare: (context, wrapComponent) => {
     wrapComponent({

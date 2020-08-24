@@ -8,8 +8,7 @@ const RenderRouteWithApollo = {
   /**
    * Extracts the state of the GQL calls and provides them to the component
    *
-   * @param {any} context
-   * @param {Function} wrapComponent
+   * @type {import('../models').PrepareCallback}
    */
   prepare: async (context, wrapComponent) => {
     wrapComponent({
