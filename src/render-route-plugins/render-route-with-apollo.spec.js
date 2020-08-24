@@ -7,26 +7,17 @@ jest.mock('@apollo/client/react/ssr', () => {
 import { ApolloProvider } from '@apollo/client';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 
-import renderRouteWithApollo, { prepare } from './render-route-with-apollo';
+import RenderRouteWithApollo from './render-route-with-apollo';
 
-describe('renderRouteWithApollo', () => {
-  let hooks, wrapComponent;
+describe('RenderRouteWithApollo', () => {
+  let wrapComponent;
 
   beforeEach(() => {
-    hooks = {
-      prepare: jest.fn(),
-      postRender: jest.fn(),
-    };
     wrapComponent = jest.fn();
     getDataFromTree.mockReset();
   });
 
   describe('prepare', () => {
-    it('should add a prepare hook', () => {
-      renderRouteWithApollo(hooks);
-      expect(hooks.prepare).toHaveBeenCalledWith(prepare);
-    });
-
     it('should call wrapComponent with ApolloProvider', () => {
       const context = {
         apolloClient: {
@@ -37,7 +28,7 @@ describe('renderRouteWithApollo', () => {
           props: {},
         },
       };
-      prepare.apply(null, [context, wrapComponent]);
+      RenderRouteWithApollo.prepare.apply(null, [context, wrapComponent]);
       expect(wrapComponent).toHaveBeenCalledWith({
         type: ApolloProvider,
         props: {
@@ -56,7 +47,7 @@ describe('renderRouteWithApollo', () => {
           props: {},
         },
       };
-      await prepare.apply(null, [context, wrapComponent]);
+      await RenderRouteWithApollo.prepare.apply(null, [context, wrapComponent]);
       expect(getDataFromTree).toHaveBeenCalled();
     });
 
@@ -71,7 +62,7 @@ describe('renderRouteWithApollo', () => {
         },
       };
       context.apolloClient.extract.mockReturnValue('EXTRACTED_STATE');
-      await prepare.apply(null, [context, wrapComponent]);
+      await RenderRouteWithApollo.prepare.apply(null, [context, wrapComponent]);
       expect(context.component.props).toHaveProperty('state');
       expect(context.component.props.state).toBe('EXTRACTED_STATE');
     });

@@ -1,11 +1,9 @@
 /* global describe it expect */
 import { StaticRouter } from 'react-router-dom';
 
-import renderRouteWithReactRouter, {
-  prepare,
-} from './render-route-with-react-router';
+import RenderRouteWithReactRouter from './render-route-with-react-router';
 
-describe('renderRouteWithReactRouter', () => {
+describe('RenderRouteWithReactRouter', () => {
   let hooks, wrapComponent;
 
   beforeEach(() => {
@@ -17,16 +15,11 @@ describe('renderRouteWithReactRouter', () => {
   });
 
   describe('prepare', () => {
-    it('should add a prepare hook', () => {
-      renderRouteWithReactRouter(hooks);
-      expect(hooks.prepare).toHaveBeenCalledWith(prepare);
-    });
-
     it('should call wrapComponent with StaticRouter', () => {
       const context = {
         route: '/123',
       };
-      prepare.apply(null, [context, wrapComponent]);
+      RenderRouteWithReactRouter.prepare.apply(null, [context, wrapComponent]);
       expect(wrapComponent).toHaveBeenCalledWith({
         type: StaticRouter,
         props: {

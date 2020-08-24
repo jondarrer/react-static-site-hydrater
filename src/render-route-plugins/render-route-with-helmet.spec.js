@@ -3,12 +3,9 @@ import fs from 'fs';
 import { resolve } from 'path';
 import { HelmetProvider } from 'react-helmet-async';
 
-import renderRouteWithHelmet, {
-  prepare,
-  postRender,
-} from './render-route-with-helmet';
+import RenderRouteWithHelmet from './render-route-with-helmet';
 
-describe('renderRouteWithHelmet', () => {
+describe('RenderRouteWithHelmet', () => {
   let indexHtml, indexEjsWithoutDoctype, hooks, wrapComponent;
 
   beforeEach(() => {
@@ -32,21 +29,16 @@ describe('renderRouteWithHelmet', () => {
   });
 
   describe('prepare', () => {
-    it('should add a prepare hook', () => {
-      renderRouteWithHelmet(hooks);
-      expect(hooks.prepare).toHaveBeenCalledWith(prepare);
-    });
-
     it('should add a helmetContext', () => {
       const context = {};
-      prepare.apply(null, [context, wrapComponent]);
+      RenderRouteWithHelmet.prepare.apply(null, [context, wrapComponent]);
       expect(context).toHaveProperty('helmetContext');
       expect(context.helmetContext).toStrictEqual({});
     });
 
     it('should call wrapComponent with HelmetProvider', () => {
       const context = {};
-      prepare.apply(null, [context, wrapComponent]);
+      RenderRouteWithHelmet.prepare.apply(null, [context, wrapComponent]);
       expect(wrapComponent).toHaveBeenCalledWith({
         type: HelmetProvider,
         props: {
@@ -57,11 +49,6 @@ describe('renderRouteWithHelmet', () => {
   });
 
   describe('postRender', () => {
-    it('should add a postRender hook', () => {
-      renderRouteWithHelmet(hooks);
-      expect(hooks.postRender).toHaveBeenCalledWith(postRender);
-    });
-
     it('should add the title tag', () => {
       const context = {
         helmetContext: {
@@ -75,7 +62,7 @@ describe('renderRouteWithHelmet', () => {
         },
       };
       const renderedComponent = '';
-      const result = postRender.apply(null, [
+      const result = RenderRouteWithHelmet.postRender.apply(null, [
         context,
         renderedComponent,
         indexHtml,
@@ -102,7 +89,7 @@ describe('renderRouteWithHelmet', () => {
         },
       };
       const renderedComponent = '';
-      const result = postRender.apply(null, [
+      const result = RenderRouteWithHelmet.postRender.apply(null, [
         context,
         renderedComponent,
         indexHtml,
@@ -129,7 +116,7 @@ describe('renderRouteWithHelmet', () => {
         },
       };
       const renderedComponent = '';
-      const result = postRender.apply(null, [
+      const result = RenderRouteWithHelmet.postRender.apply(null, [
         context,
         renderedComponent,
         indexHtml,
@@ -155,7 +142,7 @@ describe('renderRouteWithHelmet', () => {
         },
       };
       const renderedComponent = '';
-      const result = postRender.apply(null, [
+      const result = RenderRouteWithHelmet.postRender.apply(null, [
         context,
         renderedComponent,
         indexHtml,
@@ -181,7 +168,7 @@ describe('renderRouteWithHelmet', () => {
         },
       };
       const renderedComponent = '';
-      const result = postRender.apply(null, [
+      const result = RenderRouteWithHelmet.postRender.apply(null, [
         context,
         renderedComponent,
         indexHtml,
