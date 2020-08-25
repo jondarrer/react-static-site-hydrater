@@ -1,10 +1,3 @@
-import {
-  RenderRouteWithReactRouter,
-  RenderRouteWithHelmet,
-  RenderRouteWithApollo,
-  RenderRouteRenderer,
-} from './render-route-plugins';
-
 /**
  * @param {Array<String>} pluginNames
  * @return {import("./models").Plugin} The list of requested plugins
@@ -17,12 +10,18 @@ const getRequestedPlugins = (pluginNames) => {
   return pluginNames.map((name) => {
     switch (name) {
       case 'renderer':
+        const { RenderRouteRenderer } = require('./render-route-plugins');
         return { name, plugin: RenderRouteRenderer };
       case 'react-router':
+        const {
+          RenderRouteWithReactRouter,
+        } = require('./render-route-plugins');
         return { name, plugin: RenderRouteWithReactRouter };
       case 'helmet':
+        const { RenderRouteWithHelmet } = require('./render-route-plugins');
         return { name, plugin: RenderRouteWithHelmet };
       case 'apollo':
+        const { RenderRouteWithApollo } = require('./render-route-plugins');
         return { name, plugin: RenderRouteWithApollo };
     }
   });

@@ -1,4 +1,5 @@
 import renderAllRoutes from './render-all-routes';
+import renderAllRoutesWithPlugins from './render-all-routes-with-plugins';
 import routeToFileName from './route-to-filename';
 
 class ReactStaticSiteHydrater {
@@ -10,7 +11,7 @@ class ReactStaticSiteHydrater {
     compiler.hooks.make.tapPromise(
       'ReactStaticSiteHydrater',
       async (compilation) => {
-        const { routes, component } = this.options;
+        const { routes, component, plugins } = this.options;
 
         // Hook into the html-webpack-plugin processing and add the html
         // Inspired by https://github.com/jantimon/favicons-webpack-plugin/blob/master/src/index.js
@@ -33,21 +34,35 @@ class ReactStaticSiteHydrater {
 
         HtmlWebpackPlugin.getHooks(compilation).afterEmit.tapAsync(
           'ReactStaticSiteHydrater',
-          (htmlPluginData, htmlWebpackPluginCallback) => {
+          async (htmlPluginData, htmlWebpackPluginCallback) => {
             const baseHtml = compilation.getAsset(htmlPluginData.outputName);
-            const additionalAssets = renderAllRoutes(
-              routes,
-              baseHtml.source.source(),
-              component
-            );
-            additionalAssets.forEach((asset) => {
+            let additionalAssets;
+            if (plugins) {
+              console.log(
+                'pluginsX detected, so using renderAllRoutesWithPlugins'
+              );
+              additionalAssets = renderAllRoutesWithPlugins(
+                routes,
+                baseHtml.source.source(),
+                component,
+                plugins
+              );
+            } else {
+              additionalAssets = renderAllRoutes(
+                routes,
+                baseHtml.source.source(),
+                component
+              );
+            }
+            additionalAssets.forEach(async (asset) => {
               const filename = routeToFileName(asset.route);
+              const renderedAs = await asset.renderedAs;
               compilation.assets[filename] = {
                 source: function () {
-                  return asset.renderedAs;
+                  return renderedAs;
                 },
                 size: function () {
-                  return asset.renderedAs.length;
+                  return renderedAs.length;
                 },
               };
             });

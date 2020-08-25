@@ -1,4 +1,5 @@
 import { renderToString } from 'react-dom/server';
+import { jsxify } from '../utils';
 
 /**
  * Renders the wrapped component
@@ -7,20 +8,17 @@ const RenderRouteRenderer = {
   /**
    * @type {import('../models').RenderCallback}
    */
-  render: (wrappedComponent) => renderToString(() => wrappedComponent),
+  render: (wrappedComponent) => renderToString(jsxify(wrappedComponent)),
 
   /**
    * @type {import('../models').FinaliseCallback}
    */
-  finalise: (_context, renderedComponent, indexHtml) => {
-    return (
-      '<!DOCTYPE html>\n' +
-      indexHtml.replace(
-        '<div id="root"></div>',
-        `<div id="root">${renderedComponent}</div>`
-      )
-    );
-  },
+  finalise: (_context, renderedComponent, indexHtml) =>
+    '<!DOCTYPE html>\n' +
+    indexHtml.replace(
+      '<div id="root"></div>',
+      `<div id="root">${renderedComponent}</div>`
+    ),
 };
 
 export default RenderRouteRenderer;
