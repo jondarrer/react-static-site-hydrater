@@ -39,7 +39,7 @@ class ReactStaticSiteHydrater {
             let additionalAssets;
             if (plugins) {
               console.log(
-                'pluginsX detected, so using renderAllRoutesWithPlugins'
+                'plugins detected, so using renderAllRoutesWithPlugins'
               );
               additionalAssets = renderAllRoutesWithPlugins(
                 routes,
