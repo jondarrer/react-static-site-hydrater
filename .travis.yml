@@ -3,7 +3,7 @@ node_js:
   - 12.14.1
 install:
   - npm ci
-  - HUSKY_SKIP_INSTALL=1 npm i --no-save react-dom/server react-router-dom react-helmet-async @apollo/client
+  - HUSKY_SKIP_INSTALL=1 npm i --no-save react-dom react-router-dom react-helmet-async @apollo/client@^3.0.0 graphql@^15.0.0 html-webpack-plugin@^4.0.0 subscriptions-transport-ws@^0.9.0
 deploy:
   provider: npm
   skip_cleanup: true
