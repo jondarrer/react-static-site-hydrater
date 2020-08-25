@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - 12.14.1
+install:
+  - npm ci
+  - HUSKY_SKIP_INSTALL=1 npm i --no-save react-dom/server react-router-dom react-helmet-async @apollo/client
 deploy:
   provider: npm
   skip_cleanup: true
