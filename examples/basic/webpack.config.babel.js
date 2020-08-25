@@ -26,6 +26,7 @@ module.exports = {
       routes: ['/', '/about', '/404-not-found'],
       component: App,
       baseFilename: 'default.html',
+      plugins: ['react-router'],
     }),
   ],
 };
