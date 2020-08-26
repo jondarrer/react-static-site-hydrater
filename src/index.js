@@ -56,7 +56,12 @@ class ReactStaticSiteHydrater {
             }
             additionalAssets.forEach(async (asset) => {
               const filename = routeToFileName(asset.route);
-              const renderedAs = await asset.renderedAs;
+              let renderedAs;
+              if (plugins) {
+                renderedAs = await asset.renderedAs;
+              } else {
+                renderedAs = asset.renderedAs;
+              }
               compilation.assets[filename] = {
                 source: function () {
                   return renderedAs;
