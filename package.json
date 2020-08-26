@@ -10,7 +10,7 @@
     "build": "webpack",
     "test": "jest",
     "lint-staged": "lint-staged",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
