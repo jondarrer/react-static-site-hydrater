@@ -1,30 +1,59 @@
 /**
- * @param {Array<String>} pluginNames
- * @return {import("./models").Plugin} The list of requested plugins
+ * @param {Array<String|import("./models").PluginDescriptor>} pluginDescriptors
+ * @return {import("./models").PluginWrapper} The list of requested plugins
  */
-const getRequestedPlugins = (pluginNames) => {
-  if (!pluginNames) pluginNames = [];
+const getRequestedPlugins = (pluginDescriptors) => {
+  if (!pluginDescriptors) pluginDescriptors = [];
 
-  pluginNames.unshift('renderer');
+  pluginDescriptors.unshift('renderer');
 
-  return pluginNames.map((name) => {
-    switch (name) {
+  return pluginDescriptors.map((pluginDescriptor) => {
+    const pluginDescriptorX = getPluginDescriptor(pluginDescriptor);
+    switch (pluginDescriptorX.name) {
       case 'renderer':
         const { RenderRouteRenderer } = require('./render-route-plugins');
-        return { name, plugin: RenderRouteRenderer };
+        return {
+          name: pluginDescriptorX.name,
+          plugin: RenderRouteRenderer,
+          options: pluginDescriptorX.options,
+        };
       case 'react-router':
         const {
           RenderRouteWithReactRouter,
         } = require('./render-route-plugins');
-        return { name, plugin: RenderRouteWithReactRouter };
+        return {
+          name: pluginDescriptorX.name,
+          plugin: RenderRouteWithReactRouter,
+          options: pluginDescriptorX.options,
+        };
       case 'helmet':
         const { RenderRouteWithHelmet } = require('./render-route-plugins');
-        return { name, plugin: RenderRouteWithHelmet };
+        return {
+          name: pluginDescriptorX.name,
+          plugin: RenderRouteWithHelmet,
+          options: pluginDescriptorX.options,
+        };
       case 'apollo':
         const { RenderRouteWithApollo } = require('./render-route-plugins');
-        return { name, plugin: RenderRouteWithApollo };
+        return {
+          name: pluginDescriptorX.name,
+          plugin: RenderRouteWithApollo,
+          options: pluginDescriptorX.options,
+        };
     }
   });
 };
 
+/**
+ * @param {String|import("./models").PluginDescriptor} pluginDescriptor
+ */
+const getPluginDescriptor = (pluginDescriptor) => {
+  if (typeof pluginDescriptor === 'string')
+    return { name: pluginDescriptor, options: {} };
+  if (typeof pluginDescriptor === 'object' && pluginDescriptor.length === 2)
+    return { name: pluginDescriptor[0], options: pluginDescriptor[1] };
+  throw new Error(`Invalid plugin format ${pluginDescriptor}`);
+};
+
 export default getRequestedPlugins;
+export { getPluginDescriptor };

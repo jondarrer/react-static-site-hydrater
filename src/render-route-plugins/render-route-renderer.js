@@ -3,6 +3,7 @@ import { jsxify } from '../utils';
 
 /**
  * Renders the wrapped component
+ * @type {import('../models').Plugin}
  */
 const RenderRouteRenderer = {
   /**

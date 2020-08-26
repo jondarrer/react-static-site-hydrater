@@ -5,6 +5,7 @@ import { appendChildTo, appendAttrsTo } from '../utils';
 
 /**
  * Applies Helmet tags to the SSR rendered output
+ * @type {import('../models').Plugin}
  */
 const RenderRouteWithHelmet = {
   /**

@@ -11,6 +11,7 @@ export const fake = 0;
  * @callback PrepareCallback
  * @param {Any} context The context
  * @param {WrapComponentCallback} wrapComponent Wrap the component in another
+ * @param {Object} options The options from the Webpack config
  */
 
 /**
@@ -42,16 +43,30 @@ export const fake = 0;
  */
 
 /**
+ * @typedef {Object} PluginWrapper
+ * @property {String} name The name of the plugin, e.g. renderer
+ * @property {Plugin} plugin The plugin itself
+ * @property {Object} options The plugin options passed in from the Webpack config
+ */
+
+/**
  * @typedef {Object} Plugin
- * @property {String} name The prepare hook, called before rendering
- * @property {Plugin} plugin The postRender hook, called after the React component has been rendered
+ * @property {PrepareCallback} [prepare] Called before rendering a route
+ * @property {RenderCallback} [render] Called to render the React component for the route
+ * @property {PostRenderCallback} [postRender] Called after the React component has been rendered for a route and returns the index html
+ * @property {FinaliseCallback} [finalise] Called after the React component has been rendered for a route
+ */
+
+/**
+ * @typedef {Array<{0: String, 1: Object}>} PluginDescriptor
  */
 
 /**
  * @typedef {Object} PipelinePluginHook
- * @property {String} name The prepare hook, called before rendering
- * @property {Plugin} plugin The postRender hook, called after the React component has been rendered
- * @property {String} hookName The postRender hook, called after the React component has been rendered
+ * @property {String} name The name of the plugin, e.g. renderer
+ * @property {Plugin} plugin The plugin itself
+ * @property {Object} options The plugin options passed in from the Webpack config
+ * @property {String} hookName The name of the hook, e.g. prepare, render or postRender, etc.
  */
 
 /**

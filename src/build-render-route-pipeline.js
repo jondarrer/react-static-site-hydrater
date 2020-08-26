@@ -1,7 +1,7 @@
 /**
  * Build the execution pipeline for rendering a route
  *
- * @type {Array<import("./models").Plugin>}
+ * @type {Array<import("./models").PluginWrapper>}
  * @return {import("./models").Pipeline}
  */
 const buildRenderRoutePipeline = (plugins) => {

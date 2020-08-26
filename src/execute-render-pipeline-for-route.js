@@ -46,7 +46,7 @@ const executeRenderPipelineForRoute = async (
   __state.wrappedComponent = null;
   wrapComponent(context.component);
 
-  pipeline.forEach(async ({ name, hookName, plugin }) => {
+  pipeline.forEach(async ({ name, plugin, options, hookName }) => {
     switch (hookName) {
       case 'prepare':
         if (
@@ -55,6 +55,7 @@ const executeRenderPipelineForRoute = async (
           await Reflect.apply(plugin['prepare'], null, [
             context,
             wrapComponent,
+            options,
           ]);
         } else {
           Reflect.apply(plugin['prepare'], null, [context, wrapComponent]);

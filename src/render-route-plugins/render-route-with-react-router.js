@@ -2,6 +2,7 @@ import { StaticRouter } from 'react-router-dom';
 
 /**
  * Applies Helmet tags to the SSR rendered output
+ * @type {import('../models').Plugin}
  */
 const RenderRouteWithReactRouter = {
   /**

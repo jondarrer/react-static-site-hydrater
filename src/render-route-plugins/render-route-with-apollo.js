@@ -3,6 +3,7 @@ import { getDataFromTree } from '@apollo/client/react/ssr';
 
 /**
  * Applies Helmet tags to the SSR rendered output
+ * @type {import('../models').Plugin}
  */
 const RenderRouteWithApollo = {
   /**
@@ -10,21 +11,21 @@ const RenderRouteWithApollo = {
    *
    * @type {import('../models').PrepareCallback}
    */
-  prepare: async (context, wrapComponent) => {
+  prepare: async (context, wrapComponent, { client }) => {
     wrapComponent({
       type: ApolloProvider,
       props: {
-        client: context.apolloClient,
+        client,
       },
     });
     const Component = context.component.type;
     const PreparedComponent = () => (
-      <ApolloProvider client={context.apolloClient}>
+      <ApolloProvider client={client}>
         <Component />
       </ApolloProvider>
     );
     await getDataFromTree(PreparedComponent);
-    context.component.props['state'] = context.apolloClient.extract();
+    context.component.props['state'] = client.extract();
   },
 };
 
