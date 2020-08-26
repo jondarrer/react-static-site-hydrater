@@ -17,10 +17,6 @@ const renderAllRoutesWithPlugins = (
   pluginDescriptors
 ) => {
   const plugins = getRequestedPlugins(pluginDescriptors);
-  console.log('renderAllRoutesWithPlugins', 'getRequestedPlugins', {
-    pluginDescriptors,
-    plugins,
-  });
   const pipeline = buildRenderRoutePipeline(plugins);
   return routes.map((route) => {
     const renderedRoute = executeRenderPipelineForRoute(

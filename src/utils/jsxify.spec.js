@@ -18,14 +18,6 @@ describe('jsxify', () => {
     ).toStrictEqual(<Component1 prop1={123} />);
   });
   it('should jsxify a simple element', () => {
-    console.log(
-      jsxify({
-        type: 'p',
-        props: {
-          children: 'Are you sure?',
-        },
-      })
-    );
     expect(
       jsxify({
         type: 'p',
