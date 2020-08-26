@@ -41,7 +41,7 @@ class ReactStaticSiteHydrater {
               console.log(
                 'plugins detected, so using renderAllRoutesWithPlugins'
               );
-              additionalAssets = renderAllRoutesWithPlugins(
+              additionalAssets = await renderAllRoutesWithPlugins(
                 routes,
                 baseHtml.source.source(),
                 component,
@@ -57,18 +57,12 @@ class ReactStaticSiteHydrater {
             for (let i = 0; i < additionalAssets.length; i++) {
               const asset = additionalAssets[i];
               const filename = routeToFileName(asset.route);
-              let renderedAs;
-              if (plugins) {
-                renderedAs = await asset.renderedAs;
-              } else {
-                renderedAs = asset.renderedAs;
-              }
               compilation.assets[filename] = {
                 source: function () {
-                  return renderedAs;
+                  return asset.renderedAs;
                 },
                 size: function () {
-                  return renderedAs.length;
+                  return asset.renderedAs.length;
                 },
               };
             }

@@ -1,7 +1,5 @@
 /* global describe it expect */
-import executeRenderPipelineForRoute, {
-  wrapComponent,
-} from './execute-render-pipeline-for-route';
+import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
 
 describe('executeRenderPipelineForRoute', () => {
   const p1Render = jest.fn();
@@ -76,7 +74,7 @@ describe('executeRenderPipelineForRoute', () => {
 
   it('should return nothing when given no pipeline', async () => {
     const pipeline = [];
-    const result = await executeRenderPipelineForRoute(pipeline);
+    const result = await executeRenderPipelineForRoute(pipeline, '', '', null);
     expect(result).toBeNull();
   });
 
@@ -109,37 +107,46 @@ describe('executeRenderPipelineForRoute', () => {
     p2PostRender.mockReturnValue('<html />');
     p3PostRender.mockReturnValue('<html />');
     await executeRenderPipelineForRoute(pipeline1, route, indexHtml, Component);
-    expect(p2Prepare).toHaveBeenCalledWith(
-      {
-        route,
-        component: {
-          type: Component,
-          props: {},
-        },
+    expect(p2Prepare.mock.calls[0][0]).toStrictEqual({
+      route,
+      component: {
+        type: Component,
+        props: {},
       },
-      wrapComponent
-    );
-    expect(p3Prepare).toHaveBeenCalledWith(
-      {
-        route,
-        component: {
-          type: Component,
-          props: {},
+      __wrappedComponent: {
+        props: {
+          children: [{ props: {}, type: Component }],
         },
+        type: Wrapper1,
       },
-      wrapComponent
-    );
-    expect(p4Prepare).toHaveBeenCalledWith(
-      {
-        route,
-        component: {
-          type: Component,
-          props: {},
+    });
+    expect(p3Prepare.mock.calls[0][0]).toStrictEqual({
+      route,
+      component: {
+        type: Component,
+        props: {},
+      },
+      __wrappedComponent: {
+        props: {
+          children: [{ props: {}, type: Component }],
         },
+        type: Wrapper1,
       },
-      wrapComponent
-    );
-    expect(p1Render).toHaveBeenCalledWith({
+    });
+    expect(p4Prepare.mock.calls[0][0]).toStrictEqual({
+      route,
+      component: {
+        type: Component,
+        props: {},
+      },
+      __wrappedComponent: {
+        props: {
+          children: [{ props: {}, type: Component }],
+        },
+        type: Wrapper1,
+      },
+    });
+    expect(p1Render.mock.calls[0][0]).toStrictEqual({
       type: Wrapper1,
       props: {
         children: [
@@ -150,39 +157,51 @@ describe('executeRenderPipelineForRoute', () => {
         ],
       },
     });
-    expect(p2PostRender).toHaveBeenCalledWith(
-      {
-        route,
-        component: {
-          type: Component,
-          props: {},
-        },
+    expect(p2PostRender.mock.calls[0][0]).toStrictEqual({
+      route,
+      component: {
+        type: Component,
+        props: {},
       },
-      'Rendered Result',
-      indexHtml
-    );
-    expect(p3PostRender).toHaveBeenCalledWith(
-      {
-        route,
-        component: {
-          type: Component,
-          props: {},
+      __wrappedComponent: {
+        props: {
+          children: [{ props: {}, type: Component }],
         },
+        type: Wrapper1,
       },
-      'Rendered Result',
-      indexHtml
-    );
-    expect(p1Finalise).toHaveBeenCalledWith(
-      {
-        route,
-        component: {
-          type: Component,
-          props: {},
+    });
+    expect(p2PostRender.mock.calls[0][1]).toStrictEqual('Rendered Result');
+    expect(p2PostRender.mock.calls[0][2]).toStrictEqual(indexHtml);
+    expect(p3PostRender.mock.calls[0][0]).toStrictEqual({
+      route,
+      component: {
+        type: Component,
+        props: {},
+      },
+      __wrappedComponent: {
+        props: {
+          children: [{ props: {}, type: Component }],
         },
+        type: Wrapper1,
       },
-      'Rendered Result',
-      indexHtml
-    );
+    });
+    expect(p3PostRender.mock.calls[0][1]).toStrictEqual('Rendered Result');
+    expect(p3PostRender.mock.calls[0][2]).toStrictEqual(indexHtml);
+    expect(p1Finalise.mock.calls[0][0]).toStrictEqual({
+      route,
+      component: {
+        type: Component,
+        props: {},
+      },
+      __wrappedComponent: {
+        props: {
+          children: [{ props: {}, type: Component }],
+        },
+        type: Wrapper1,
+      },
+    });
+    expect(p1Finalise.mock.calls[0][1]).toStrictEqual('Rendered Result');
+    expect(p1Finalise.mock.calls[0][2]).toStrictEqual(indexHtml);
   });
 
   it('should return the result of calling finalise', async () => {

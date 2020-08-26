@@ -2,20 +2,6 @@ import wrapComponentBase from './wrap-component';
 
 const AsyncFunctionPrototype = Reflect.getPrototypeOf(async () => {});
 
-const __state = {
-  wrappedComponent: null,
-};
-
-/**
- * @type {import("./models").WrapComponentCallback}
- */
-const wrapComponent = (elementTree) => {
-  __state.wrappedComponent = wrapComponentBase(
-    elementTree,
-    __state.wrappedComponent
-  );
-};
-
 /**
  * Build the execution pipeline for rendering a route
  *
@@ -40,15 +26,24 @@ const executeRenderPipelineForRoute = async (
       type: Component,
       props: {},
     },
+    __wrappedComponent: null,
   };
   let renderedComponent;
 
-  __state.wrappedComponent = null;
+  // __state.wrappedComponent = null;
+  /**
+   * @type {import("./models").WrapComponentCallback}
+   */
+  const wrapComponent = (elementTree) => {
+    context.__wrappedComponent = wrapComponentBase(
+      elementTree,
+      context.__wrappedComponent
+    );
+  };
   wrapComponent(context.component);
 
   for (let i = 0; i < pipeline.length; i++) {
     const { plugin, options, hookName } = pipeline[i];
-    // console.log({ plugin, options, hookName });
     switch (hookName) {
       case 'prepare':
         if (
@@ -65,7 +60,7 @@ const executeRenderPipelineForRoute = async (
         break;
       case 'render':
         renderedComponent = Reflect.apply(plugin['render'], null, [
-          __state.wrappedComponent,
+          context.__wrappedComponent,
         ]);
         break;
       case 'postRender':
@@ -89,4 +84,3 @@ const executeRenderPipelineForRoute = async (
 };
 
 export default executeRenderPipelineForRoute;
-export { wrapComponent };

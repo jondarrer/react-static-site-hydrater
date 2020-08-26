@@ -10,7 +10,7 @@ import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
  * @param {React.Component} component
  * @param {Array<String|import("./models").PluginDescriptor>} pluginDescriptors
  */
-const renderAllRoutesWithPlugins = (
+const renderAllRoutesWithPlugins = async (
   routes,
   indexHtml,
   component,
@@ -18,15 +18,17 @@ const renderAllRoutesWithPlugins = (
 ) => {
   const plugins = getRequestedPlugins(pluginDescriptors);
   const pipeline = buildRenderRoutePipeline(plugins);
-  return routes.map((route) => {
-    const renderedRoute = executeRenderPipelineForRoute(
-      pipeline,
-      route,
-      indexHtml,
-      component
-    );
-    return { route, renderedAs: renderedRoute };
-  });
+  return Promise.all(
+    routes.map(async (route) => {
+      const renderedRoute = await executeRenderPipelineForRoute(
+        pipeline,
+        route,
+        indexHtml,
+        component
+      );
+      return { route, renderedAs: renderedRoute };
+    })
+  );
 };
 
 export default renderAllRoutesWithPlugins;
