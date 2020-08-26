@@ -54,7 +54,8 @@ class ReactStaticSiteHydrater {
                 component
               );
             }
-            additionalAssets.forEach(async (asset) => {
+            for (let i = 0; i < additionalAssets.length; i++) {
+              const asset = additionalAssets[i];
               const filename = routeToFileName(asset.route);
               let renderedAs;
               if (plugins) {
@@ -70,7 +71,7 @@ class ReactStaticSiteHydrater {
                   return renderedAs.length;
                 },
               };
-            });
+            }
             htmlWebpackPluginCallback(null, htmlPluginData);
           }
         );

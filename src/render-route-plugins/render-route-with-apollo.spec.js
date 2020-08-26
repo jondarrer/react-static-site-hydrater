@@ -24,6 +24,21 @@ describe('RenderRouteWithApollo', () => {
   });
 
   describe('prepare', () => {
+    it('should add the client to the context as apolloClient', async () => {
+      const context = {
+        component: {
+          type: jest.fn(),
+          props: {},
+        },
+      };
+      await RenderRouteWithApollo.prepare.apply(null, [
+        context,
+        wrapComponent,
+        options,
+      ]);
+      expect(context).toHaveProperty('apolloClient');
+      expect(context.apolloClient).toBe(options.client);
+    });
     it('should call wrapComponent with ApolloProvider', () => {
       const context = {
         component: {
@@ -59,7 +74,7 @@ describe('RenderRouteWithApollo', () => {
       expect(getDataFromTree).toHaveBeenCalled();
     });
 
-    it('should add a state prop to the component with the extracted client state', async () => {
+    it.skip('should add a state prop to the component with the extracted client state', async () => {
       const context = {
         component: {
           type: jest.fn(),
@@ -74,6 +89,29 @@ describe('RenderRouteWithApollo', () => {
       ]);
       expect(context.component.props).toHaveProperty('state');
       expect(context.component.props.state).toBe('EXTRACTED_STATE');
+    });
+  });
+
+  describe('postRender', () => {
+    it('should return with the __APOLL_STATE__ set in the indexHtml', () => {
+      const context = {
+        apolloClient: options.client,
+        component: {
+          type: jest.fn(),
+          props: {},
+        },
+      };
+      const indexHtml = '<div id="root"></div>';
+      const renderedComponent = '';
+      options.client.extract.mockReturnValue({ a: 1 });
+      const result = Reflect.apply(RenderRouteWithApollo['postRender'], null, [
+        context,
+        renderedComponent,
+        indexHtml,
+      ]);
+      expect(result).toBe(
+        '<script>window.__APOLLO_STATE__={"a":1};</script><div id="root"></div>'
+      );
     });
   });
 });

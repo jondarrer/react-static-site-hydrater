@@ -46,7 +46,7 @@ describe('ReactStaticSiteHydrater', () => {
       tapAfterEmitAsync.mockClear();
       htmlWebpackPluginCallback.mockClear();
     });
-    it('it should add the configured routes as assets', (done) => {
+    it('v2 it should add the configured routes as assets', (done) => {
       const assets = {};
       assets[baseFilename] = {
         source: { source: () => 'abc' },
@@ -68,6 +68,36 @@ describe('ReactStaticSiteHydrater', () => {
         routes: ['/', '/about'],
         component: () => <div />,
         baseFilename,
+      });
+      sut.apply(compiler);
+      expect(tapMakePromise).toBeCalled();
+    });
+    it('v3 it should add the configured routes as assets', (done) => {
+      const assets = {};
+      assets[baseFilename] = {
+        source: { source: () => 'abc' },
+        size: () => {},
+      };
+      tapMakePromise.mockImplementation((name, makeCallback) => {
+        expect(name).toBe('ReactStaticSiteHydrater');
+        return makeCallback(createCompilation(assets));
+      });
+      tapAfterEmitAsync.mockImplementation((name, afterEmitAsync) => {
+        expect(name).toBe('ReactStaticSiteHydrater');
+        afterEmitAsync(createHtmlPluginData(), htmlWebpackPluginCallback).then(
+          () => {
+            expect(assets['__index.html']).toBeDefined();
+            expect(assets['__about.html']).toBeDefined();
+            expect(htmlWebpackPluginCallback).toBeCalled();
+            done();
+          }
+        );
+      });
+      const sut = new ReactStaticSiteHydrater({
+        routes: ['/', '/about'],
+        component: () => <div />,
+        baseFilename,
+        plugins: ['react-router'],
       });
       sut.apply(compiler);
       expect(tapMakePromise).toBeCalled();

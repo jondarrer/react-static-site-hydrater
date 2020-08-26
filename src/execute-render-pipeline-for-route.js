@@ -46,7 +46,9 @@ const executeRenderPipelineForRoute = async (
   __state.wrappedComponent = null;
   wrapComponent(context.component);
 
-  pipeline.forEach(async ({ name, plugin, options, hookName }) => {
+  for (let i = 0; i < pipeline.length; i++) {
+    const { plugin, options, hookName } = pipeline[i];
+    // console.log({ plugin, options, hookName });
     switch (hookName) {
       case 'prepare':
         if (
@@ -81,7 +83,7 @@ const executeRenderPipelineForRoute = async (
         ]);
         break;
     }
-  });
+  }
 
   return result;
 };

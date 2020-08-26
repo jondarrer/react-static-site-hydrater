@@ -94,7 +94,7 @@ describe('executeRenderPipelineForRoute', () => {
     expect(p1Finalise).toHaveBeenCalledTimes(1);
   });
 
-  it.only('should run the pipeline hooks with the correct params', async () => {
+  it('should run the pipeline hooks with the correct params', async () => {
     const route = '/abc-123';
     const indexHtml = '<html />';
     const Component = () => {};
@@ -185,12 +185,26 @@ describe('executeRenderPipelineForRoute', () => {
     );
   });
 
-  it('should run the pipeline hooks with the correct params', async () => {
+  it('should return the result of calling finalise', async () => {
     const route = '/abc-123';
     const indexHtml = '<html><body><div id="root"></div></body></html>';
     const Component = () => {};
     p1Render.mockReturnValue('Rendered Result');
-    const result = await executeRenderPipelineForRoute(pipeline1);
+    p2PostRender.mockReturnValue(indexHtml);
+    p3PostRender.mockReturnValue(indexHtml);
+    p4Prepare.mockResolvedValue();
+    p1Finalise.mockImplementation((_ctx, renderedComponent, indexHtml) =>
+      indexHtml.replace(
+        '<div id="root"></div>',
+        `<div id="root">${renderedComponent}</div>`
+      )
+    );
+    const result = await executeRenderPipelineForRoute(
+      pipeline1,
+      route,
+      indexHtml,
+      Component
+    );
     expect(result).toBeDefined();
     expect(result).toBe(
       '<html><body><div id="root">Rendered Result</div></body></html>'

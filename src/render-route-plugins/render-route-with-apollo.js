@@ -1,5 +1,7 @@
+import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { getDataFromTree } from '@apollo/client/react/ssr';
+import { StaticRouter } from 'react-router-dom';
 
 /**
  * Applies Helmet tags to the SSR rendered output
@@ -12,6 +14,7 @@ const RenderRouteWithApollo = {
    * @type {import('../models').PrepareCallback}
    */
   prepare: async (context, wrapComponent, { client }) => {
+    context.apolloClient = client;
     wrapComponent({
       type: ApolloProvider,
       props: {
@@ -19,13 +22,34 @@ const RenderRouteWithApollo = {
       },
     });
     const Component = context.component.type;
-    const PreparedComponent = () => (
+    const PreparedComponent = (
       <ApolloProvider client={client}>
-        <Component />
+        <StaticRouter location={context.route}>
+          <Component />
+        </StaticRouter>
       </ApolloProvider>
     );
     await getDataFromTree(PreparedComponent);
-    context.component.props['state'] = client.extract();
+    const state = client.extract();
+    console.log('RenderRouteWithApollo', 'prepare', { state });
+  },
+
+  /**
+   * Adds the Apollo  tags to the index html
+   * https://www.apollographql.com/docs/react/performance/server-side-rendering/#using-getdatafromtree
+   *
+   * @type {import('../models').PostRenderCallback}
+   */
+  postRender: (context, _renderedComponent, indexHtml) => {
+    const state = context.apolloClient.extract();
+    console.log('RenderRouteWithApollo', 'postRender', { state });
+    return indexHtml.replace(
+      '<div id="root"></div>',
+      `<script>window.__APOLLO_STATE__=${JSON.stringify(state).replace(
+        /</g,
+        '\\u003c'
+      )};</script><div id="root"></div>`
+    );
   },
 };
 
