@@ -30,8 +30,6 @@ const RenderRouteWithApollo = {
       </ApolloProvider>
     );
     await getDataFromTree(PreparedComponent);
-    const state = client.extract();
-    console.log('RenderRouteWithApollo', 'prepare', { state });
   },
 
   /**
@@ -42,7 +40,6 @@ const RenderRouteWithApollo = {
    */
   postRender: (context, _renderedComponent, indexHtml) => {
     const state = context.apolloClient.extract();
-    console.log('RenderRouteWithApollo', 'postRender', { state });
     return indexHtml.replace(
       '<div id="root"></div>',
       `<script>window.__APOLLO_STATE__=${JSON.stringify(state).replace(
