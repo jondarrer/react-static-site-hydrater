@@ -1,6 +1,6 @@
 /**
  * @param {Array<String|import("./models").PluginDescriptor>} pluginDescriptors
- * @return {import("./models").PluginWrapper} The list of requested plugins
+ * @return {Array<import("./models").PluginWrapper>} The list of requested plugins
  */
 const getRequestedPlugins = (pluginDescriptors) => {
   if (!pluginDescriptors) pluginDescriptors = [];
