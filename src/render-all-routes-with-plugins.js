@@ -8,15 +8,19 @@ import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
  * @param {Array<String>} routes
  * @param {String} indexHtml
  * @param {React.Component} component
- * @param {Array<String>} pluginNames
+ * @param {Array<String|import("./models").PluginDescriptor>} pluginDescriptors
  */
 const renderAllRoutesWithPlugins = (
   routes,
   indexHtml,
   component,
-  pluginNames
+  pluginDescriptors
 ) => {
-  const plugins = getRequestedPlugins(pluginNames);
+  const plugins = getRequestedPlugins(pluginDescriptors);
+  console.log('renderAllRoutesWithPlugins', 'getRequestedPlugins', {
+    pluginDescriptors,
+    plugins,
+  });
   const pipeline = buildRenderRoutePipeline(plugins);
   return routes.map((route) => {
     const renderedRoute = executeRenderPipelineForRoute(
