@@ -73,23 +73,6 @@ describe('RenderRouteWithApollo', () => {
       ]);
       expect(getDataFromTree).toHaveBeenCalled();
     });
-
-    it.skip('should add a state prop to the component with the extracted client state', async () => {
-      const context = {
-        component: {
-          type: jest.fn(),
-          props: {},
-        },
-      };
-      options.client.extract.mockReturnValue('EXTRACTED_STATE');
-      await RenderRouteWithApollo.prepare.apply(null, [
-        context,
-        wrapComponent,
-        options,
-      ]);
-      expect(context.component.props).toHaveProperty('state');
-      expect(context.component.props.state).toBe('EXTRACTED_STATE');
-    });
   });
 
   describe('postRender', () => {

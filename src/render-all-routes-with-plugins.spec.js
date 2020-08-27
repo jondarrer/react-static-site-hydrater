@@ -2,6 +2,7 @@
 jest.mock('./execute-render-pipeline-for-route');
 import renderAllRoutesWithPlugins from './render-all-routes-with-plugins';
 import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
+import { RenderRouteRenderer } from './render-route-plugins';
 
 describe('renderAllRoutesWithPlugins', () => {
   const indexHtml = '<html><body><div id="root"></div></body></html>';
@@ -18,16 +19,49 @@ describe('renderAllRoutesWithPlugins', () => {
     expect(executeRenderPipelineForRoute).toBeCalledTimes(2);
   });
 
-  it.skip('should render the specified routes / and /about', () => {
+  it('should render the specified routes / and /about', async () => {
     const routes = ['/', '/about'];
     executeRenderPipelineForRoute.mockImplementation(() => 'abc');
-    const result = renderAllRoutesWithPlugins(routes, indexHtml, component, []);
+    const result = await renderAllRoutesWithPlugins(
+      routes,
+      indexHtml,
+      component,
+      []
+    );
     expect(executeRenderPipelineForRoute.mock.calls[0]).toEqual([
+      [
+        {
+          hookName: 'render',
+          name: 'renderer',
+          options: {},
+          plugin: RenderRouteRenderer,
+        },
+        {
+          hookName: 'finalise',
+          name: 'renderer',
+          options: {},
+          plugin: RenderRouteRenderer,
+        },
+      ],
       routes[0],
       indexHtml,
       component,
     ]);
     expect(executeRenderPipelineForRoute.mock.calls[1]).toEqual([
+      [
+        {
+          hookName: 'render',
+          name: 'renderer',
+          options: {},
+          plugin: RenderRouteRenderer,
+        },
+        {
+          hookName: 'finalise',
+          name: 'renderer',
+          options: {},
+          plugin: RenderRouteRenderer,
+        },
+      ],
       routes[1],
       indexHtml,
       component,
