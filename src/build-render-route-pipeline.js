@@ -22,6 +22,18 @@ const buildRenderRoutePipeline = (plugins) => {
       })
   );
 
+  // preRender
+  pipeline.push(
+    ...plugins
+      .filter(({ plugin }) => Reflect.has(plugin, 'preRender'))
+      .map((plugin) => {
+        return {
+          ...plugin,
+          hookName: 'preRender',
+        };
+      })
+  );
+
   // render
   pipeline.push(
     ...plugins

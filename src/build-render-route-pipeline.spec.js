@@ -14,8 +14,9 @@ describe('buildRenderRoutePipeline', () => {
     prepare: jest.fn(),
     postRender: jest.fn(),
   };
-  const plugin4Prepare = {
+  const plugin4PrepareAndPreRender = {
     prepare: jest.fn(),
+    preRender: jest.fn(),
   };
 
   it('should return an empty execution pipeline when given no plugins', () => {
@@ -35,10 +36,13 @@ describe('buildRenderRoutePipeline', () => {
         name: 'plugin-3-prepare-and-post-render',
         plugin: plugin3PrepareAndPostRender,
       },
-      { name: 'plugin-4-prepare', plugin: plugin4Prepare },
+      {
+        name: 'plugin-4-prepare-and-pre-render',
+        plugin: plugin4PrepareAndPreRender,
+      },
     ];
     const pipeline = buildRenderRoutePipeline(plugins);
-    expect(pipeline).toHaveLength(7);
+    expect(pipeline).toHaveLength(8);
     expect(pipeline[0]).toStrictEqual({
       name: 'plugin-2-prepare-and-post-render',
       plugin: plugin2PrepareAndPostRender,
@@ -50,26 +54,31 @@ describe('buildRenderRoutePipeline', () => {
       hookName: 'prepare',
     });
     expect(pipeline[2]).toStrictEqual({
-      name: 'plugin-4-prepare',
-      plugin: plugin4Prepare,
+      name: 'plugin-4-prepare-and-pre-render',
+      plugin: plugin4PrepareAndPreRender,
       hookName: 'prepare',
     });
     expect(pipeline[3]).toStrictEqual({
+      name: 'plugin-4-prepare-and-pre-render',
+      plugin: plugin4PrepareAndPreRender,
+      hookName: 'preRender',
+    });
+    expect(pipeline[4]).toStrictEqual({
       name: 'plugin-1-render',
       plugin: plugin1Render,
       hookName: 'render',
     });
-    expect(pipeline[4]).toStrictEqual({
+    expect(pipeline[5]).toStrictEqual({
       name: 'plugin-3-prepare-and-post-render',
       plugin: plugin3PrepareAndPostRender,
       hookName: 'postRender',
     });
-    expect(pipeline[5]).toStrictEqual({
+    expect(pipeline[6]).toStrictEqual({
       name: 'plugin-2-prepare-and-post-render',
       plugin: plugin2PrepareAndPostRender,
       hookName: 'postRender',
     });
-    expect(pipeline[6]).toStrictEqual({
+    expect(pipeline[7]).toStrictEqual({
       name: 'plugin-1-render',
       plugin: plugin1Render,
       hookName: 'finalise',

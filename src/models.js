@@ -15,6 +15,14 @@ export const fake = 0;
  */
 
 /**
+ * Called to just before rendering the React component for the route
+ *
+ * @callback PreRenderCallback
+ * @param {Any} context The context
+ * @param {Object} wrappedComponent The context
+ */
+
+/**
  * Called to render the React component for the route
  *
  * @callback RenderCallback
@@ -51,7 +59,8 @@ export const fake = 0;
 
 /**
  * @typedef {Object} Plugin
- * @property {PrepareCallback} [prepare] Called before rendering a route
+ * @property {PrepareCallback} [prepare] Called so the plugin can do some preparation prior to the route being rendered, e.g. wrapping the component with a provider
+ * @property {PreRenderCallback} [preRender] Called just before rendering a route
  * @property {RenderCallback} [render] Called to render the React component for the route
  * @property {PostRenderCallback} [postRender] Called after the React component has been rendered for a route and returns the index html
  * @property {FinaliseCallback} [finalise] Called after the React component has been rendered for a route

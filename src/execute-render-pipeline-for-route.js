@@ -58,6 +58,21 @@ const executeRenderPipelineForRoute = async (
           Reflect.apply(plugin['prepare'], null, [context, wrapComponent]);
         }
         break;
+      case 'preRender':
+        if (
+          Reflect.getPrototypeOf(plugin['preRender']) === AsyncFunctionPrototype
+        ) {
+          await Reflect.apply(plugin['preRender'], null, [
+            context,
+            context.__wrappedComponent,
+          ]);
+        } else {
+          Reflect.apply(plugin['preRender'], null, [
+            context,
+            context.__wrappedComponent,
+          ]);
+        }
+        break;
       case 'render':
         renderedComponent = Reflect.apply(plugin['render'], null, [
           context.__wrappedComponent,

@@ -58,7 +58,9 @@ describe('RenderRouteWithApollo', () => {
         },
       });
     });
+  });
 
+  describe('preRender', () => {
     it('should call getDataFromTree', async () => {
       const context = {
         component: {
@@ -66,7 +68,7 @@ describe('RenderRouteWithApollo', () => {
           props: {},
         },
       };
-      await RenderRouteWithApollo.prepare.apply(null, [
+      await RenderRouteWithApollo.preRender.apply(null, [
         context,
         wrapComponent,
         options,
@@ -76,7 +78,7 @@ describe('RenderRouteWithApollo', () => {
   });
 
   describe('postRender', () => {
-    it('should return with the __APOLL_STATE__ set in the indexHtml', () => {
+    it('should return with the __APOLLO_STATE__ set in the indexHtml', () => {
       const context = {
         apolloClient: options.client,
         component: {

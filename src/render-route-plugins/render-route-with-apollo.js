@@ -1,7 +1,6 @@
-import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { getDataFromTree } from '@apollo/client/react/ssr';
-import { StaticRouter } from 'react-router-dom';
+import { jsxify } from '../utils';
 
 /**
  * Applies Helmet tags to the SSR rendered output
@@ -9,11 +8,11 @@ import { StaticRouter } from 'react-router-dom';
  */
 const RenderRouteWithApollo = {
   /**
-   * Extracts the state of the GQL calls and provides them to the component
+   * Wrap the component with ApolloProvider
    *
    * @type {import('../models').PrepareCallback}
    */
-  prepare: async (context, wrapComponent, { client }) => {
+  prepare: (context, wrapComponent, { client }) => {
     context.apolloClient = client;
     wrapComponent({
       type: ApolloProvider,
@@ -21,15 +20,15 @@ const RenderRouteWithApollo = {
         client,
       },
     });
-    const Component = context.component.type;
-    const PreparedComponent = (
-      <ApolloProvider client={client}>
-        <StaticRouter location={context.route}>
-          <Component />
-        </StaticRouter>
-      </ApolloProvider>
-    );
-    await getDataFromTree(PreparedComponent);
+  },
+
+  /**
+   * Pre-fetches the GQL calls and provides them to client.extract
+   *
+   * @type {import('../models').PreRenderCallback}
+   */
+  preRender: async (_context, wrappedComponent) => {
+    await getDataFromTree(jsxify(wrappedComponent));
   },
 
   /**

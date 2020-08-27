@@ -8,6 +8,7 @@ describe('executeRenderPipelineForRoute', () => {
   const p3Prepare = jest.fn();
   const p3PostRender = jest.fn();
   const p4Prepare = jest.fn();
+  const p4PreRender = jest.fn();
   const p1Finalise = jest.fn();
   const plugin1Render = {
     render: p1Render,
@@ -21,8 +22,9 @@ describe('executeRenderPipelineForRoute', () => {
     prepare: p3Prepare,
     postRender: p3PostRender,
   };
-  const plugin4Prepare = {
+  const plugin4PrepareAndPreRender = {
     prepare: p4Prepare,
+    preRender: p4PreRender,
   };
   const pipeline1 = [
     {
@@ -36,9 +38,14 @@ describe('executeRenderPipelineForRoute', () => {
       hookName: 'prepare',
     },
     {
-      name: 'plugin-4-prepare',
-      plugin: plugin4Prepare,
+      name: 'plugin-4-prepare-and-pre-render',
+      plugin: plugin4PrepareAndPreRender,
       hookName: 'prepare',
+    },
+    {
+      name: 'plugin-4-prepare-and-pre-render',
+      plugin: plugin4PrepareAndPreRender,
+      hookName: 'preRender',
     },
     {
       name: 'plugin-1-render',
@@ -70,6 +77,7 @@ describe('executeRenderPipelineForRoute', () => {
     p3Prepare.mockReset();
     p3PostRender.mockReset();
     p4Prepare.mockReset();
+    p4PreRender.mockReset();
   });
 
   it('should return nothing when given no pipeline', async () => {
@@ -86,6 +94,7 @@ describe('executeRenderPipelineForRoute', () => {
     expect(p2Prepare).toHaveBeenCalledTimes(1);
     expect(p3Prepare).toHaveBeenCalledTimes(1);
     expect(p4Prepare).toHaveBeenCalledTimes(1);
+    expect(p4PreRender).toHaveBeenCalledTimes(1);
     expect(p1Render).toHaveBeenCalledTimes(1);
     expect(p2PostRender).toHaveBeenCalledTimes(1);
     expect(p3PostRender).toHaveBeenCalledTimes(1);
@@ -144,6 +153,43 @@ describe('executeRenderPipelineForRoute', () => {
           children: [{ props: {}, type: Component }],
         },
         type: Wrapper1,
+      },
+    });
+    expect(p4PreRender).toHaveBeenCalledWith(
+      {
+        route,
+        component: {
+          type: Component,
+          props: {},
+        },
+        __wrappedComponent: {
+          props: {
+            children: [{ props: {}, type: Component }],
+          },
+          type: Wrapper1,
+        },
+      },
+      {
+        type: Wrapper1,
+        props: {
+          children: [
+            {
+              type: Component,
+              props: {},
+            },
+          ],
+        },
+      }
+    );
+    expect(p4PreRender.mock.calls[0][1]).toStrictEqual({
+      type: Wrapper1,
+      props: {
+        children: [
+          {
+            type: Component,
+            props: {},
+          },
+        ],
       },
     });
     expect(p1Render.mock.calls[0][0]).toStrictEqual({
