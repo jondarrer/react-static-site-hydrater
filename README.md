@@ -4,8 +4,14 @@
 
 [![Build Status](https://travis-ci.com/jondarrer/react-static-site-hydrater.svg?branch=master)](https://travis-ci.com/jondarrer/react-static-site-hydrater)
 
-A Webpack plugin to hydrate static React sites using ReactDOM.hydrate to
-pre-build the static site.
+**Due to this being a work in progress, it is necessary to either write your
+application in ES5 without import/export, or to use Babel to transform your code
+prior to Webpack being called. This is because it is currently necessary to
+import parts of the app into the Webpack build.**
+
+A Webpack plugin to create html static file sites from React apps using
+ReactDOM.hydrate, which can be hosted statically. They can also make use of
+Apollo for GraphQL and Helmet for SEO/social.
 
 ## Usage
 
@@ -89,14 +95,15 @@ above:
 
 ## Options
 
-|      Name       |       Type        | Default | Description                                                     |
-| :-------------: | :---------------: | :-----: | :-------------------------------------------------------------- |
-|  **`routes`**   | `{Array<String>}` |   []    | The routes to build (e.g. ['/', '/about', '/contact-us'])       |
-| **`component`** |   `{Component}`   |         | The React component with the routing/Switch, but not the Router |
+|      Name       |                Type                | Default | Description                                                                                                                         |
+| :-------------: | :--------------------------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------- |
+|  **`routes`**   |         `{Array<String>}`          |   []    | The routes to build (e.g. ['/', '/about', '/contact-us'])                                                                           |
+| **`component`** |           `{Component}`            |         | The React component with the routing/Switch, but not the Router                                                                     |
+|  **`plugins`**  | `{Array<String|PluginDescriptor>}` |         | List of plugins to use to create the static content (e.g. `['react-router', 'helmet', ['apollo', { client: new ApolloClient() }]]`) |
 
 ## Remaining features to be implemented
 
-This plugin is not yet feature complete. It requires the following to be
+This Webpack plugin is not yet feature complete. It requires the following to be
 implemented:
 
 - Generation of the _./firebase.json_ file
