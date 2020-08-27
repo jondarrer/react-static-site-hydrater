@@ -68,10 +68,15 @@ describe('RenderRouteWithApollo', () => {
           props: {},
         },
       };
+      const wrappedComponent = {
+        type: 'p',
+        props: {
+          children: 'Are you sure?',
+        },
+      };
       await RenderRouteWithApollo.preRender.apply(null, [
         context,
-        wrapComponent,
-        options,
+        wrappedComponent,
       ]);
       expect(getDataFromTree).toHaveBeenCalled();
     });
