@@ -22,3 +22,4 @@ const RenderRouteWithReactRouter = {
 };
 
 export default RenderRouteWithReactRouter;
+export { RenderRouteWithReactRouter };

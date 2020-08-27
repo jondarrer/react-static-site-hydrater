@@ -51,3 +51,4 @@ const RenderRouteWithApollo = {
 };
 
 export default RenderRouteWithApollo;
+export { RenderRouteWithApollo };

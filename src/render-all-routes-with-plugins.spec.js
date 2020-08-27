@@ -2,7 +2,7 @@
 jest.mock('./execute-render-pipeline-for-route');
 import renderAllRoutesWithPlugins from './render-all-routes-with-plugins';
 import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
-import { RenderRouteRenderer } from './render-route-plugins';
+import { RenderRouteRenderer } from './render-route-plugins/render-route-renderer';
 
 describe('renderAllRoutesWithPlugins', () => {
   const indexHtml = '<html><body><div id="root"></div></body></html>';

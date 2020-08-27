@@ -23,3 +23,4 @@ const RenderRouteRenderer = {
 };
 
 export default RenderRouteRenderer;
+export { RenderRouteRenderer };

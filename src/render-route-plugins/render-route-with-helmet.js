@@ -50,3 +50,4 @@ const RenderRouteWithHelmet = {
 };
 
 export default RenderRouteWithHelmet;
+export { RenderRouteWithHelmet };

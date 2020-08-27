@@ -1,10 +1,8 @@
 /* global describe it expect */
-import {
-  RenderRouteRenderer,
-  RenderRouteWithReactRouter,
-  RenderRouteWithHelmet,
-  RenderRouteWithApollo,
-} from './render-route-plugins';
+import RenderRouteRenderer from './render-route-plugins/render-route-renderer';
+import RenderRouteWithReactRouter from './render-route-plugins/render-route-with-react-router';
+import RenderRouteWithHelmet from './render-route-plugins/render-route-with-helmet';
+import RenderRouteWithApollo from './render-route-plugins/render-route-with-apollo';
 
 import getRequestedPlugins, {
   getPluginDescriptor,
@@ -12,14 +10,14 @@ import getRequestedPlugins, {
 
 describe('getRequestedPlugins', () => {
   it('should get the basic render-route-renderer plugin when no others are requested', () => {
-    const pluigins = getRequestedPlugins();
-    expect(pluigins).toStrictEqual([
+    const plugins = getRequestedPlugins();
+    expect(plugins).toStrictEqual([
       { name: 'renderer', plugin: RenderRouteRenderer, options: {} },
     ]);
   });
   it('should get the basic render-route-renderer plugin when no others are requested', () => {
-    const pluigins = getRequestedPlugins(['react-router', 'helmet', 'apollo']);
-    expect(pluigins).toStrictEqual([
+    const plugins = getRequestedPlugins(['react-router', 'helmet', 'apollo']);
+    expect(plugins).toStrictEqual([
       { name: 'renderer', plugin: RenderRouteRenderer, options: {} },
       { name: 'react-router', plugin: RenderRouteWithReactRouter, options: {} },
       { name: 'helmet', plugin: RenderRouteWithHelmet, options: {} },
@@ -37,11 +35,11 @@ describe('getPluginDescriptor', () => {
     });
   });
   it('should get the name and passed in options from a proper PluginDescriptor', () => {
-    const pluigins = getPluginDescriptor([
+    const plugins = getPluginDescriptor([
       'plugin-1',
       { option1: 'one', option2: 'two' },
     ]);
-    expect(pluigins).toStrictEqual({
+    expect(plugins).toStrictEqual({
       name: 'plugin-1',
       options: { option1: 'one', option2: 'two' },
     });
