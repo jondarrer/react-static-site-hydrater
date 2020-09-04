@@ -9,6 +9,7 @@ import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
  * @param {String} indexHtml
  * @param {React.Component} component
  * @param {Array<String|import("./models").PluginDescriptor>} pluginDescriptors
+ * @return {Array<import("./models").RenderedRoute>} The rendered routes
  */
 const renderAllRoutesWithPlugins = async (
   routes,

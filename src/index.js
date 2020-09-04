@@ -38,9 +38,6 @@ class ReactStaticSiteHydrater {
             const baseHtml = compilation.getAsset(htmlPluginData.outputName);
             let additionalAssets;
             if (plugins) {
-              console.log(
-                'plugins detected, so using renderAllRoutesWithPlugins'
-              );
               additionalAssets = await renderAllRoutesWithPlugins(
                 routes,
                 baseHtml.source.source(),
@@ -48,6 +45,10 @@ class ReactStaticSiteHydrater {
                 plugins
               );
             } else {
+              console.log(
+                '\x1b[33m%s\x1b[0m',
+                "DEPRECATION WARNING\nPlease provide a list of plugins in the options for ReactStaticSiteHydrater as per https://github.com/jondarrer/react-static-site-hydrater#options, as builds which don't specify these will no longer work in future versions"
+              );
               additionalAssets = renderAllRoutes(
                 routes,
                 baseHtml.source.source(),

@@ -81,3 +81,9 @@ export const fake = 0;
 /**
  * @typedef {Array<PipelinePluginHook>} Pipeline
  */
+
+/**
+ * @typedef RenderedRoute
+ * @property {string} route The route
+ * @property {string} renderedAs The rendered route
+ */
