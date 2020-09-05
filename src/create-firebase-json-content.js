@@ -4,7 +4,15 @@
  * @return {any} The content of the firebase.json file
  */
 const createFirebaseJsonContent = (routes, publicDir = 'dist') => {
-  const rewrites = routes.map((route) => ({
+  const orderedRoutes = routes.sort((a, b) => {
+    if (a.route === '/' && b.route !== '/') {
+      return 1;
+    } else if (a.route !== '/' && b.route === '/') {
+      return -1;
+    }
+    return 0;
+  });
+  const rewrites = orderedRoutes.map((route) => ({
     source: route.route === '/' ? '!/@(js|css|jpg|png|txt)/**' : route.route,
     destination: `/${route.filename}`,
   }));
