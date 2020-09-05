@@ -43,7 +43,7 @@ const writeRoutesToCompilationAssets = async (
       null,
       2
     );
-    compilation.assets['firebase.json'] = {
+    compilation.assets['../firebase.json'] = {
       source: function () {
         return firebaseJsonContent;
       },

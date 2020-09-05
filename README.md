@@ -103,7 +103,7 @@ above:
 
 ## To output the firebase.json file
 
-To ensure the `firebase.json` file is output in the `dist` directory, simply
+To ensure the `firebase.json` file is output in the root directory, simply
 include the **firebase** plugin in the `plugins` option:
 
 ```js
@@ -114,7 +114,7 @@ include the **firebase** plugin in the `plugins` option:
   })
 ```
 
-This will generate the `dist/firebase.json` file.
+This will generate the `./firebase.json` file.
 
 ## Developing
 
