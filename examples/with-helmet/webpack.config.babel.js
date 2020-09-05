@@ -25,7 +25,7 @@ module.exports = {
     new ReactStaticSiteHydrater({
       routes: ['/', '/about', '/404-not-found'],
       component: App,
-      plugins: ['react-router', 'helmet'],
+      plugins: ['react-router', 'helmet', 'firebase'],
     }),
   ],
 };

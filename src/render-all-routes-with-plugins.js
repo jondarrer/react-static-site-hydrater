@@ -20,6 +20,7 @@ const renderAllRoutesWithPlugins = async (
 ) => {
   const plugins = getRequestedPlugins(pluginDescriptors);
   const pipeline = buildRenderRoutePipeline(plugins);
+
   return Promise.all(
     routes.map(async (route) => {
       const renderedRoute = await executeRenderPipelineForRoute(
