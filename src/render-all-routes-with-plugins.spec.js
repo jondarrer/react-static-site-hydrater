@@ -68,7 +68,15 @@ describe('renderAllRoutesWithPlugins', () => {
     ]);
     expect(result).toBeDefined();
     expect(result.length).toBe(2);
-    expect(result[0]).toEqual({ route: '/', renderedAs: 'abc' });
-    expect(result[1]).toEqual({ route: '/about', renderedAs: 'abc' });
+    expect(result[0]).toEqual({
+      route: '/',
+      renderedAs: 'abc',
+      filename: '__index.html',
+    });
+    expect(result[1]).toEqual({
+      route: '/about',
+      renderedAs: 'abc',
+      filename: '__about.html',
+    });
   });
 });

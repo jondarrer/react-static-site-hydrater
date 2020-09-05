@@ -1,6 +1,7 @@
 import getRequestedPlugins from './get-requested-plugins';
 import buildRenderRoutePipeline from './build-render-route-pipeline';
 import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
+import routeToFileName from './route-to-filename';
 
 /**
  * Render all the routes using the specified plugins
@@ -27,7 +28,11 @@ const renderAllRoutesWithPlugins = async (
         indexHtml,
         component
       );
-      return { route, renderedAs: renderedRoute };
+      return {
+        route,
+        renderedAs: renderedRoute,
+        filename: routeToFileName(route),
+      };
     })
   );
 };

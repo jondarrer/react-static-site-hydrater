@@ -60,8 +60,12 @@ describe('writeRoutesToCompilationAssets', () => {
     const data = { outputName };
     const cb = jest.fn();
     renderAllRoutesWithPlugins.mockResolvedValue([
-      { route: '/', renderedAs: 'the index page' },
-      { route: '/about', renderedAs: 'the about page' },
+      { route: '/', renderedAs: 'the index page', filename: '__index.html' },
+      {
+        route: '/about',
+        renderedAs: 'the about page',
+        filename: '__about.html',
+      },
     ]);
 
     // Act
@@ -78,8 +82,12 @@ describe('writeRoutesToCompilationAssets', () => {
     const data = { outputName };
     const cb = jest.fn();
     renderAllRoutesWithPlugins.mockResolvedValue([
-      { route: '/', renderedAs: 'the index page' },
-      { route: '/about', renderedAs: 'the about page' },
+      { route: '/', renderedAs: 'the index page', filename: '__index.html' },
+      {
+        route: '/about',
+        renderedAs: 'the about page',
+        filename: '__about.html',
+      },
     ]);
 
     // Act

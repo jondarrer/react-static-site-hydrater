@@ -1,5 +1,4 @@
 import renderAllRoutesWithPlugins from './render-all-routes-with-plugins';
-import routeToFileName from './route-to-filename';
 
 /**
  * Takes a list of routes and plugins, gets the routes rendered using the plugins and writes the results to the Webpack compilation
@@ -24,8 +23,7 @@ const writeRoutesToCompilationAssets = async (
   );
   for (let i = 0; i < additionalAssets.length; i++) {
     const asset = additionalAssets[i];
-    const filename = routeToFileName(asset.route);
-    compilation.assets[filename] = {
+    compilation.assets[asset.filename] = {
       source: function () {
         return asset.renderedAs;
       },
