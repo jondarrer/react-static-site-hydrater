@@ -1,6 +1,7 @@
 const { getRequestedPlugins } = require('./get-requested-plugins');
 const buildRenderRoutePipeline = require('./build-render-route-pipeline');
 const executeRenderPipelineForRoute = require('./execute-render-pipeline-for-route');
+const routeToFileName = require('./route-to-filename');
 
 /**
  * Render all the routes using the specified plugins
@@ -27,7 +28,11 @@ const renderAllRoutesWithPlugins = async (
         indexHtml,
         component
       );
-      return { route, renderedAs: renderedRoute };
+      return {
+        route,
+        renderedAs: renderedRoute,
+        filename: routeToFileName(route),
+      };
     })
   );
 };

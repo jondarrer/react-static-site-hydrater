@@ -86,6 +86,7 @@ module.exports = { fake: 0 };
  * @typedef {Object} RenderedRoute
  * @property {string} route The route
  * @property {string} renderedAs The rendered route
+ * @property {string} filename The output filename
  */
 
 /**
