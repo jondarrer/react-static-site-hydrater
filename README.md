@@ -99,14 +99,22 @@ above:
 | :-----------------: | :-----------------------------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------- |
 |    **`routes`**     |           `{Array<String>}`           |   []    | The routes to build (e.g. ['/', '/about', '/contact-us'])                                                                           |
 | **`componentPath`** |              `{String}`               |         | The full path to the application's main component with the routing/Switch, but not the Router                                       |
-|    **`plugins`**    | `{Array<String or PluginDescriptor>}` |         | List of plugins to use to create the static content (e.g. `['react-router', 'helmet', ['apollo', { client: new ApolloClient() }]]`) |
+|    **`plugins`**    | `{Array<String or PluginDescriptor>}` |         | List of plugins to use to create the static content (e.g. `['react-router', 'helmet', ['apollo', { client: new ApolloClient() }], 'firebase']`) |
 
-## Remaining features to be implemented
+## To output the firebase.json file
 
-This Webpack plugin is not yet feature complete. It requires the following to be
-implemented:
+To ensure the `firebase.json` file is output in the `dist` directory, simply
+include the **firebase** plugin in the `plugins` option:
 
-- Generation of the _./firebase.json_ file
+```js
+  new ReactStaticSiteHydrater({
+    routes: ['/', '/about', '/contact-us'],
+    component: App,
+    plugins: [..., 'firebase'],
+  })
+```
+
+This will generate the `dist/firebase.json` file.
 
 ## Developing
 

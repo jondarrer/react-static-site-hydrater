@@ -1,4 +1,5 @@
 const renderAllRoutesWithPlugins = require('./render-all-routes-with-plugins');
+const createFirebaseJsonContent = require('./create-firebase-json-content');
 
 /**
  * Takes a list of routes and plugins, gets the routes rendered using the plugins and writes the results to the Webpack compilation
@@ -24,6 +25,7 @@ const writeRoutesToCompilationAssets = async (
     component,
     plugins
   );
+
   for (let i = 0; i < additionalAssets.length; i++) {
     const asset = additionalAssets[i];
     compilation.assets[asset.filename] = {
@@ -32,6 +34,21 @@ const writeRoutesToCompilationAssets = async (
       },
       size: function () {
         return asset.renderedAs.length;
+      },
+    };
+  }
+  if (options.plugins.includes('firebase')) {
+    const firebaseJsonContent = JSON.stringify(
+      createFirebaseJsonContent(additionalAssets),
+      null,
+      2
+    );
+    compilation.assets['firebase.json'] = {
+      source: function () {
+        return firebaseJsonContent;
+      },
+      size: function () {
+        return firebaseJsonContent.length;
       },
     };
   }
