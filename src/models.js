@@ -83,7 +83,20 @@ export const fake = 0;
  */
 
 /**
- * @typedef RenderedRoute
+ * @typedef {Object} RenderedRoute
  * @property {string} route The route
  * @property {string} renderedAs The rendered route
+ */
+
+/**
+ * @typedef {Object} WebpackPluginOptions
+ * @property {Array<string>} routes The list of routes to build
+ * @property {Object} component The React component to render
+ * @property {Array<string|PluginDescriptor>} plugins The list of plugins to use when building the routes and rendering the component
+ */
+
+/**
+ * @typedef {Object} HtmlWebpackPluginAfterEmitData https://github.com/jantimon/html-webpack-plugin#afteremit-hook
+ * @property {string} outputName The name of the output file for the HtmlWebpackPlugin instance
+ * @property {any} plugin The HtmlWebpackPlugin instance itself
  */
