@@ -150,12 +150,12 @@ describe('writeRoutesToCompilationAssets', () => {
 
     // Assert
     expect(createFirebaseJsonContent).toBeCalledWith(additionalAssets);
-    expect(compilation.assets['firebase.json']).toBeDefined();
-    expect(compilation.assets['firebase.json'].source).toBeDefined();
-    expect(compilation.assets['firebase.json'].source()).toBe(
+    expect(compilation.assets['../firebase.json']).toBeDefined();
+    expect(compilation.assets['../firebase.json'].source).toBeDefined();
+    expect(compilation.assets['../firebase.json'].source()).toBe(
       '{\n  "it": "firebase.json content"\n}'
     );
-    expect(compilation.assets['firebase.json'].size).toBeDefined();
-    expect(compilation.assets['firebase.json'].size()).toBe(35);
+    expect(compilation.assets['../firebase.json'].size).toBeDefined();
+    expect(compilation.assets['../firebase.json'].size()).toBe(35);
   });
 });
