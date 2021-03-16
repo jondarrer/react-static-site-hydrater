@@ -129,7 +129,9 @@ npm test
 ### Build
 
 ```bash
-npm run build
+# Include mode=development to build in development mode
+# https://webpack.js.org/configuration/mode/
+npm run build -- --mode=development 
 ```
 
 ### Publish

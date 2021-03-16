@@ -13,11 +13,6 @@ module.exports = {
     globalObject: 'this',
     umdNamedDefine: true,
   },
-  node: {
-    net: 'empty',
-    tls: 'empty',
-    dns: 'empty',
-  },
   module: {
     rules: [
       {
@@ -29,6 +24,11 @@ module.exports = {
     ],
   },
   resolve: {
+    fallback: {
+      net: false,
+      tls: false,
+      dns: false,
+    },
     alias: {
       react: resolve(__dirname, './node_modules/react'),
       'react-dom': resolve(__dirname, './node_modules/react-dom'),
