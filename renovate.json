@@ -1,0 +1,25 @@
+{
+  "extends": ["config:base"],
+  "schedule": ["after 10am and before 3pm on every weekday"],
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["pin","minor", "patch", "digest"],
+      "labels": ["automerge-dev-deps"],
+      "automerge": true
+    },
+    {
+      "matchDepTypes": ["dependencies", "peerDependencies"],
+      "matchUpdateTypes": ["pin"],
+      "labels": ["automerge-pins"],
+      "automerge": true
+    },
+    {
+      "matchDepTypes": ["dependencies", "peerDependencies"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "automerge": false,
+      "labels": ["need-review"]
+    }
+  ],
+  "dependencyDashboard": true
+}
