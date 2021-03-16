@@ -143,5 +143,6 @@ tool:
 
 ```bash
 npm version {patch/minor/major} -m ":bookmark: Update release version to %s"
+git push
 git push --tags
 ```
