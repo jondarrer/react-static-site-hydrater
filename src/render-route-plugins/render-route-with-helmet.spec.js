@@ -6,7 +6,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import RenderRouteWithHelmet from './render-route-with-helmet';
 
 describe('RenderRouteWithHelmet', () => {
-  let indexHtml, indexEjsWithoutDoctype, hooks, wrapComponent;
+  let indexHtml, indexEjs, hooks, wrapComponent;
 
   beforeEach(() => {
     indexHtml = fs.readFileSync(
@@ -15,8 +15,8 @@ describe('RenderRouteWithHelmet', () => {
         encoding: 'utf8',
       }
     );
-    indexEjsWithoutDoctype = fs.readFileSync(
-      resolve(__dirname, '../test-assets/index-without-doctype.ejs'),
+    indexEjs = fs.readFileSync(
+      resolve(__dirname, '../test-assets/index.ejs'),
       {
         encoding: 'utf8',
       }
@@ -68,7 +68,7 @@ describe('RenderRouteWithHelmet', () => {
         indexHtml,
       ]);
       expect(result).toStrictEqual(
-        formatEjs(indexEjsWithoutDoctype, {
+        formatEjs(indexEjs, {
           content: renderedComponent,
           title: 'Index',
         })
@@ -95,7 +95,7 @@ describe('RenderRouteWithHelmet', () => {
         indexHtml,
       ]);
       expect(result).toStrictEqual(
-        formatEjs(indexEjsWithoutDoctype, {
+        formatEjs(indexEjs, {
           content: renderedComponent,
           metas: { description: 'Website', keywords: 'website' },
         })
@@ -122,7 +122,7 @@ describe('RenderRouteWithHelmet', () => {
         indexHtml,
       ]);
       expect(result).toStrictEqual(
-        formatEjs(indexEjsWithoutDoctype, {
+        formatEjs(indexEjs, {
           content: renderedComponent,
           linkAlt: 'https://jondarrer.com',
         })
@@ -148,7 +148,7 @@ describe('RenderRouteWithHelmet', () => {
         indexHtml,
       ]);
       expect(result).toStrictEqual(
-        formatEjs(indexEjsWithoutDoctype, {
+        formatEjs(indexEjs, {
           content: renderedComponent,
           htmlAttrs: 'lang="en"',
         })
@@ -174,7 +174,7 @@ describe('RenderRouteWithHelmet', () => {
         indexHtml,
       ]);
       expect(result).toStrictEqual(
-        formatEjs(indexEjsWithoutDoctype, {
+        formatEjs(indexEjs, {
           content: renderedComponent,
           bodyAttrs: 'class="my-class another-class" id="id-1"',
         })
@@ -192,9 +192,9 @@ const formatEjs = (
     bodyAttrs: bodyAttrs ? ` ${bodyAttrs}` : '',
     content,
     title: title ? `<title data-rh="true">${title}</title>` : '',
-    metas: buildTags(metas, 'meta', 'name', 'content'),
+    metaDescr: buildTags(metas, 'meta', 'name', 'content'),
     linkAlt: linkAlt
-      ? `<link data-rh="true" rel="alternate" href="${linkAlt}" hrefLang="en"/>`
+      ? `<link data-rh="true" rel="alternate" href="${linkAlt}" hrefLang="en">`
       : '',
   });
 };
@@ -205,7 +205,7 @@ const buildTags = (tags, tagName, keyName, valueName) => {
   return Object.keys(tags)
     .map(
       (key) =>
-        `<${tagName} data-rh="true" ${keyName}="${key}" ${valueName}="${tags[key]}"/>`
+        `<${tagName} data-rh="true" ${keyName}="${key}" ${valueName}="${tags[key]}">`
     )
     .join('');
 };

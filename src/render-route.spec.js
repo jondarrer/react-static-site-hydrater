@@ -41,7 +41,7 @@ describe('renderRoute', () => {
       const route = '/';
       const renderedContent = '<h1>index-content</h1>';
       const result = renderRoute(route, indexHtml, Component);
-      expect(result).toEqual(
+      expect(result).toStrictEqual(
         formatEjs(indexEjs, {
           content: renderedContent,
         })
@@ -175,10 +175,10 @@ const formatEjs = (
     content,
     title: title ? `<title data-rh="true">${title}</title>` : '',
     metaDescr: metaDescr
-      ? `<meta data-rh="true" name="description" content="${metaDescr}"/>`
+      ? `<meta data-rh="true" name="description" content="${metaDescr}">`
       : '',
     linkAlt: linkAlt
-      ? `<link data-rh="true" rel="alternate" href="${linkAlt}" hreflang="en"/>`
+      ? `<link data-rh="true" rel="alternate" href="${linkAlt}" hreflang="en">`
       : '',
   });
 };
