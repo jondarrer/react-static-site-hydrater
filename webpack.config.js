@@ -4,7 +4,7 @@ const pkg = require('./package.json');
 
 module.exports = {
   entry: resolve(__dirname, './src/index.js'),
-  devtool: 'inline-source-map', // https://webpack.js.org/configuration/devtool/ Inline to enable viewing in VS Code
+  devtool: 'source-map', // https://webpack.js.org/configuration/devtool/
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -13,6 +13,7 @@ module.exports = {
     publicPath: '/dist/',
     globalObject: 'this',
     umdNamedDefine: true,
+    devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]', /// Map to source with absolute file path not webpack:// protocol
   },
   module: {
     rules: [
