@@ -99,7 +99,7 @@ above:
 | :-------------: | :--------------------------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------- |
 |  **`routes`**   |         `{Array<String>}`          |   []    | The routes to build (e.g. ['/', '/about', '/contact-us'])                                                                           |
 | **`component`** |           `{Component}`            |         | The React component with the routing/Switch, but not the Router                                                                     |
-|  **`plugins`**  | `{Array<String|PluginDescriptor>}` |         | List of plugins to use to create the static content (e.g. `['react-router', 'helmet', ['apollo', { client: new ApolloClient() }]]`) |
+|  **`plugins`**  | `{Array<String or PluginDescriptor>}` |         | List of plugins to use to create the static content (e.g. `['react-router', 'helmet', ['apollo', { client: new ApolloClient() }]]`) |
 
 ## Remaining features to be implemented
 
