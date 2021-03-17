@@ -4,7 +4,7 @@ const pkg = require('./package.json');
 
 module.exports = {
   entry: resolve(__dirname, './src/index.js'),
-  devtool: 'source-map',
+  devtool: 'inline-source-map', // https://webpack.js.org/configuration/devtool/ Inline to enable viewing in VS Code
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'bundle.js',
