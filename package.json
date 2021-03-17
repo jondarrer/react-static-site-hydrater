@@ -1,6 +1,6 @@
 {
   "name": "react-static-site-hydrater",
-  "version": "4.0.6",
+  "version": "4.0.7",
   "description": "A Node.js library to hydrate static React sites",
   "main": "dist/bundle.js",
   "files": [
