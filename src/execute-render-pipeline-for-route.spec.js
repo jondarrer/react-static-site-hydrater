@@ -1,5 +1,5 @@
 /* global describe it expect */
-import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
+const executeRenderPipelineForRoute = require('./execute-render-pipeline-for-route');
 
 describe('executeRenderPipelineForRoute', () => {
   const p1Render = jest.fn();

@@ -1,5 +1,5 @@
 /* global describe it expect */
-import { attrsToObject } from './append-attrs-to';
+const { attrsToObject } = require('./append-attrs-to');
 
 describe('attrsToObject', () => {
   it('should return {} from ~ (empty string)', () => {

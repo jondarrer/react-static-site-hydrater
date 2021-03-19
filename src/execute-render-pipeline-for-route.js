@@ -1,11 +1,11 @@
-import wrapComponentBase from './wrap-component';
+const wrapComponentBase = require('./wrap-component');
 
 const AsyncFunctionPrototype = Reflect.getPrototypeOf(async () => {});
 
 /**
  * Build the execution pipeline for rendering a route
  *
- * @param {import("./models").Pipeline} pipeline
+ * @param {require("./models").Pipeline} pipeline
  * @param {String} route
  * @param {String} indexHtml
  * @param {React.Component} Component
@@ -32,7 +32,7 @@ const executeRenderPipelineForRoute = async (
 
   // __state.wrappedComponent = null;
   /**
-   * @type {import("./models").WrapComponentCallback}
+   * @type {require("./models").WrapComponentCallback}
    */
   const wrapComponent = (elementTree) => {
     context.__wrappedComponent = wrapComponentBase(
@@ -98,4 +98,4 @@ const executeRenderPipelineForRoute = async (
   return result;
 };
 
-export default executeRenderPipelineForRoute;
+module.exports = executeRenderPipelineForRoute;

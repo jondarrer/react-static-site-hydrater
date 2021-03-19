@@ -1,12 +1,13 @@
 /* global describe it expect */
-import RenderRouteRenderer from './render-route-plugins/render-route-renderer';
-import RenderRouteWithReactRouter from './render-route-plugins/render-route-with-react-router';
-import RenderRouteWithHelmet from './render-route-plugins/render-route-with-helmet';
-import RenderRouteWithApollo from './render-route-plugins/render-route-with-apollo';
+const RenderRouteRenderer = require('./render-route-plugins/render-route-renderer');
+const RenderRouteWithReactRouter = require('./render-route-plugins/render-route-with-react-router');
+const RenderRouteWithHelmet = require('./render-route-plugins/render-route-with-helmet');
+const RenderRouteWithApollo = require('./render-route-plugins/render-route-with-apollo');
 
-import getRequestedPlugins, {
+const {
+  getRequestedPlugins,
   getPluginDescriptor,
-} from './get-requested-plugins';
+} = require('./get-requested-plugins');
 
 describe('getRequestedPlugins', () => {
   it('should get the basic render-route-renderer plugin when no others are requested', () => {

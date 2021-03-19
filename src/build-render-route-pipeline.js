@@ -1,8 +1,8 @@
 /**
  * Build the execution pipeline for rendering a route
  *
- * @param {Array<import("./models").PluginWrapper>} plugins
- * @return {import("./models").Pipeline}
+ * @param {Array<require("./models").PluginWrapper>} plugins
+ * @return {require("./models").Pipeline}
  */
 const buildRenderRoutePipeline = (plugins) => {
   const pipeline = [];
@@ -74,4 +74,4 @@ const buildRenderRoutePipeline = (plugins) => {
   return pipeline;
 };
 
-export default buildRenderRoutePipeline;
+module.exports = buildRenderRoutePipeline;

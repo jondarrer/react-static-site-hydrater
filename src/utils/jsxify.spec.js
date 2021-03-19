@@ -1,6 +1,6 @@
 /* global describe it expect */
-import React from 'react';
-import jsxify from './jsxify';
+const React = require('react');
+const jsxify = require('./jsxify');
 
 describe('jsxify', () => {
   it('should return null when no element is provided', () => {

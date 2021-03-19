@@ -1,4 +1,4 @@
-import { parse } from 'node-html-parser';
+const { parse } = require('node-html-parser');
 
 const appendChildTo = (node, helmet, tag) => {
   if (helmet[tag].toString() !== `<${tag} data-rh="true"></${tag}>`) {
@@ -6,4 +6,4 @@ const appendChildTo = (node, helmet, tag) => {
   }
 };
 
-export default appendChildTo;
+module.exports = appendChildTo;

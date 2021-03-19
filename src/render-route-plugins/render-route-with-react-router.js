@@ -1,14 +1,14 @@
-import { StaticRouter } from 'react-router-dom';
+const { StaticRouter } = require('react-router-dom');
 
 /**
  * Applies Helmet tags to the SSR rendered output
- * @type {import('../models').Plugin}
+ * @type {require('../models').Plugin}
  */
 const RenderRouteWithReactRouter = {
   /**
    * Add helmetContext to the context
    *
-   * @type {import('../models').PrepareCallback}
+   * @type {require('../models').PrepareCallback}
    */
   prepare: (context, wrapComponent) => {
     wrapComponent({
@@ -21,5 +21,4 @@ const RenderRouteWithReactRouter = {
   },
 };
 
-export default RenderRouteWithReactRouter;
-export { RenderRouteWithReactRouter };
+module.exports = RenderRouteWithReactRouter;

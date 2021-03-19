@@ -1,7 +1,7 @@
 /* global describe it expect */
-import { StaticRouter } from 'react-router-dom';
+const { StaticRouter } = require('react-router-dom');
 
-import RenderRouteWithReactRouter from './render-route-with-react-router';
+const RenderRouteWithReactRouter = require('./render-route-with-react-router');
 
 describe('RenderRouteWithReactRouter', () => {
   let hooks, wrapComponent;

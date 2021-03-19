@@ -1,16 +1,16 @@
-import { ApolloProvider } from '@apollo/client';
-import { getDataFromTree } from '@apollo/client/react/ssr';
-import { jsxify } from '../utils';
+const { ApolloProvider } = require('@apollo/client');
+const { getDataFromTree } = require('@apollo/client/react/ssr');
+const { jsxify } = require('../utils');
 
 /**
  * Applies Helmet tags to the SSR rendered output
- * @type {import('../models').Plugin}
+ * @type {require('../models').Plugin}
  */
 const RenderRouteWithApollo = {
   /**
    * Wrap the component with ApolloProvider
    *
-   * @type {import('../models').PrepareCallback}
+   * @type {require('../models').PrepareCallback}
    */
   prepare: (context, wrapComponent, { client }) => {
     context.apolloClient = client;
@@ -25,7 +25,7 @@ const RenderRouteWithApollo = {
   /**
    * Pre-fetches the GQL calls and provides them to client.extract
    *
-   * @type {import('../models').PreRenderCallback}
+   * @type {require('../models').PreRenderCallback}
    */
   preRender: async (_context, wrappedComponent) => {
     await getDataFromTree(jsxify(wrappedComponent));
@@ -35,7 +35,7 @@ const RenderRouteWithApollo = {
    * Adds the Apollo  tags to the index html
    * https://www.apollographql.com/docs/react/performance/server-side-rendering/#using-getdatafromtree
    *
-   * @type {import('../models').PostRenderCallback}
+   * @type {require('../models').PostRenderCallback}
    */
   postRender: (context, _renderedComponent, indexHtml) => {
     const state = context.apolloClient.extract();
@@ -49,5 +49,4 @@ const RenderRouteWithApollo = {
   },
 };
 
-export default RenderRouteWithApollo;
-export { RenderRouteWithApollo };
+module.exports = RenderRouteWithApollo;

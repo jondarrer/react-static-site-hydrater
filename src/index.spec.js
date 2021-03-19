@@ -1,7 +1,7 @@
 /* global describe it expect */
-import React from 'react';
+const React = require('react');
 
-import ReactStaticSiteHydrater from './';
+const ReactStaticSiteHydrater = require('./');
 
 describe('ReactStaticSiteHydrater', () => {
   const tapMakePromise = jest.fn();

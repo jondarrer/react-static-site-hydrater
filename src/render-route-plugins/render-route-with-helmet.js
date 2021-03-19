@@ -1,17 +1,17 @@
-import { HelmetProvider } from 'react-helmet-async';
-import { parse } from 'node-html-parser';
+const { HelmetProvider } = require('react-helmet-async');
+const { parse } = require('node-html-parser');
 
-import { appendChildTo, appendAttrsTo } from '../utils';
+const { appendChildTo, appendAttrsTo } = require('../utils');
 
 /**
  * Applies Helmet tags to the SSR rendered output
- * @type {import('../models').Plugin}
+ * @type {require('../models').Plugin}
  */
 const RenderRouteWithHelmet = {
   /**
    * Add helmetContext to the context
    *
-   * @type {import('../models').PrepareCallback}
+   * @type {require('../models').PrepareCallback}
    */
   prepare: (context, wrapComponent) => {
     context.helmetContext = {};
@@ -26,7 +26,7 @@ const RenderRouteWithHelmet = {
   /**
    * Adds the Helmet tags to the rendered component
    *
-   * @type {import('../models').PostRenderCallback}
+   * @type {require('../models').PostRenderCallback}
    */
   postRender: (context, _renderedComponent, indexHtml) => {
     const root = parse(indexHtml);
@@ -49,5 +49,4 @@ const RenderRouteWithHelmet = {
   },
 };
 
-export default RenderRouteWithHelmet;
-export { RenderRouteWithHelmet };
+module.exports = RenderRouteWithHelmet;

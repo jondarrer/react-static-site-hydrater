@@ -4,9 +4,9 @@ jest.mock('react-dom/server', () => {
     renderToString: jest.fn(),
   };
 });
-import { renderToString } from 'react-dom/server';
+const { renderToString } = require('react-dom/server');
 
-import RenderRouteRenderer from './render-route-renderer';
+const RenderRouteRenderer = require('./render-route-renderer');
 
 describe('RenderRouteRenderer', () => {
   describe('render', () => {

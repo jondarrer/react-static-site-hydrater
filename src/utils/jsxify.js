@@ -1,4 +1,4 @@
-import React from 'react';
+const React = require('react');
 
 const jsxify = (element, key) => {
   if (!element) return null;
@@ -24,4 +24,4 @@ const jsxify = (element, key) => {
   }
 };
 
-export default jsxify;
+module.exports = jsxify;

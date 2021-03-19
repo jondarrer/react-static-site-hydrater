@@ -4,10 +4,10 @@ jest.mock('@apollo/client/react/ssr', () => {
     getDataFromTree: jest.fn(),
   };
 });
-import { ApolloProvider } from '@apollo/client';
-import { getDataFromTree } from '@apollo/client/react/ssr';
+const { ApolloProvider } = require('@apollo/client');
+const { getDataFromTree } = require('@apollo/client/react/ssr');
 
-import RenderRouteWithApollo from './render-route-with-apollo';
+const RenderRouteWithApollo = require('./render-route-with-apollo');
 
 describe('RenderRouteWithApollo', () => {
   let wrapComponent;

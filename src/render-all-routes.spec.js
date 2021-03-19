@@ -1,7 +1,7 @@
 /* global describe it expect */
-import React from 'react';
-import renderAllRoutes from './render-all-routes';
-import renderRoute from './render-route';
+const React = require('react');
+const renderAllRoutes = require('./render-all-routes');
+const renderRoute = require('./render-route');
 
 jest.mock('./render-route');
 

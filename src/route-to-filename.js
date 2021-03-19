@@ -3,4 +3,4 @@ const routeToFilename = (route) => {
   return `_${route.replace(/\//g, '_')}.html`;
 };
 
-export default routeToFilename;
+module.exports = routeToFilename;

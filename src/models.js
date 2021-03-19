@@ -1,4 +1,4 @@
-export const fake = 0;
+module.exports = { fake: 0 };
 
 /**
  * @callback WrapComponentCallback

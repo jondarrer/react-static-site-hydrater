@@ -1,4 +1,4 @@
-import renderRoute from './render-route';
+const renderRoute = require('./render-route');
 
 /**
  * Render all the routes
@@ -6,7 +6,7 @@ import renderRoute from './render-route';
  * @param {Array<String>} routes
  * @param {String} indexHtml
  * @param {React.Component} component
- * @return {Array<import("./models").RenderedRoute>} The rendered routes
+ * @return {Array<require("./models").RenderedRoute>} The rendered routes
  */
 const renderAllRoutes = (routes, indexHtml, component) => {
   return routes.map((route) => {
@@ -15,4 +15,4 @@ const renderAllRoutes = (routes, indexHtml, component) => {
   });
 };
 
-export default renderAllRoutes;
+module.exports = renderAllRoutes;

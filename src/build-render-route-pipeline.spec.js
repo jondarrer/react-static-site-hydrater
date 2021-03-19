@@ -1,5 +1,5 @@
 /* global describe it expect */
-import buildRenderRoutePipeline from './build-render-route-pipeline';
+const buildRenderRoutePipeline = require('./build-render-route-pipeline');
 
 describe('buildRenderRoutePipeline', () => {
   const plugin1Render = {

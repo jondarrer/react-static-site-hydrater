@@ -1,3 +1,9 @@
-export { default as appendChildTo } from './append-child-to';
-export { default as appendAttrsTo } from './append-attrs-to';
-export { default as jsxify } from './jsxify';
+const appendChildTo = require('./append-child-to');
+const { appendAttrsTo } = require('./append-attrs-to');
+const jsxify = require('./jsxify');
+
+module.exports = {
+  appendChildTo,
+  appendAttrsTo,
+  jsxify,
+};

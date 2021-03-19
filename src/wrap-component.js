@@ -10,4 +10,4 @@ const wrapComponent = (element, baseElement) => {
   return element;
 };
 
-export default wrapComponent;
+module.exports = wrapComponent;

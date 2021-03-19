@@ -1,18 +1,18 @@
-import { renderToString } from 'react-dom/server';
-import { jsxify } from '../utils';
+const { renderToString } = require('react-dom/server');
+const { jsxify } = require('../utils');
 
 /**
  * Renders the wrapped component
- * @type {import('../models').Plugin}
+ * @type {require('../models').Plugin}
  */
 const RenderRouteRenderer = {
   /**
-   * @type {import('../models').RenderCallback}
+   * @type {require('../models').RenderCallback}
    */
   render: (wrappedComponent) => renderToString(jsxify(wrappedComponent)),
 
   /**
-   * @type {import('../models').FinaliseCallback}
+   * @type {require('../models').FinaliseCallback}
    */
   finalise: (_context, renderedComponent, indexHtml) =>
     '<!DOCTYPE html>\n' +
@@ -22,5 +22,4 @@ const RenderRouteRenderer = {
     ),
 };
 
-export default RenderRouteRenderer;
-export { RenderRouteRenderer };
+module.exports = RenderRouteRenderer;

@@ -1,6 +1,6 @@
-import getRequestedPlugins from './get-requested-plugins';
-import buildRenderRoutePipeline from './build-render-route-pipeline';
-import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
+const { getRequestedPlugins } = require('./get-requested-plugins');
+const buildRenderRoutePipeline = require('./build-render-route-pipeline');
+const executeRenderPipelineForRoute = require('./execute-render-pipeline-for-route');
 
 /**
  * Render all the routes using the specified plugins
@@ -8,8 +8,8 @@ import executeRenderPipelineForRoute from './execute-render-pipeline-for-route';
  * @param {Array<String>} routes
  * @param {String} indexHtml
  * @param {React.Component} component
- * @param {Array<String|import("./models").PluginDescriptor>} pluginDescriptors
- * @return {Array<import("./models").RenderedRoute>} The rendered routes
+ * @param {Array<String|require("./models").PluginDescriptor>} pluginDescriptors
+ * @return {Array<require("./models").RenderedRoute>} The rendered routes
  */
 const renderAllRoutesWithPlugins = async (
   routes,
@@ -32,4 +32,4 @@ const renderAllRoutesWithPlugins = async (
   );
 };
 
-export default renderAllRoutesWithPlugins;
+module.exports = renderAllRoutesWithPlugins;

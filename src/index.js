@@ -1,6 +1,6 @@
-import renderAllRoutes from './render-all-routes';
-import renderAllRoutesWithPlugins from './render-all-routes-with-plugins';
-import routeToFileName from './route-to-filename';
+const renderAllRoutes = require('./render-all-routes');
+const renderAllRoutesWithPlugins = require('./render-all-routes-with-plugins');
+const routeToFileName = require('./route-to-filename');
 
 class ReactStaticSiteHydrater {
   constructor(options) {
@@ -81,4 +81,4 @@ const verifyHtmlWebpackPluginVersion = (HtmlWebpackPlugin) => {
   return typeof HtmlWebpackPlugin.getHooks !== 'undefined';
 };
 
-export default ReactStaticSiteHydrater;
+module.exports = ReactStaticSiteHydrater;

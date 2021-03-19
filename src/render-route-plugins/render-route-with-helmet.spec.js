@@ -1,9 +1,9 @@
 /* global describe it expect */
-import fs from 'fs';
-import { resolve } from 'path';
-import { HelmetProvider } from 'react-helmet-async';
+const fs = require('fs');
+const { resolve } = require('path');
+const { HelmetProvider } = require('react-helmet-async');
 
-import RenderRouteWithHelmet from './render-route-with-helmet';
+const RenderRouteWithHelmet = require('./render-route-with-helmet');
 
 describe('RenderRouteWithHelmet', () => {
   let indexHtml, indexEjs, hooks, wrapComponent;
@@ -15,12 +15,9 @@ describe('RenderRouteWithHelmet', () => {
         encoding: 'utf8',
       }
     );
-    indexEjs = fs.readFileSync(
-      resolve(__dirname, '../test-assets/index.ejs'),
-      {
-        encoding: 'utf8',
-      }
-    );
+    indexEjs = fs.readFileSync(resolve(__dirname, '../test-assets/index.ejs'), {
+      encoding: 'utf8',
+    });
     hooks = {
       prepare: jest.fn(),
       postRender: jest.fn(),

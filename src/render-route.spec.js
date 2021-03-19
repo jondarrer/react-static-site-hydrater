@@ -1,12 +1,12 @@
 /* global describe it expect */
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import fs from 'fs';
-import { resolve } from 'path';
-import { HelmetProvider, Helmet } from 'react-helmet-async';
+const React = require('react');
+const { Route, Switch } = require('react-router-dom');
+const fs = require('fs');
+const { resolve } = require('path');
+const { HelmetProvider, Helmet } = require('react-helmet-async');
 HelmetProvider.canUseDOM = false;
 
-import renderRoute from './render-route';
+const renderRoute = require('./render-route');
 
 describe('renderRoute', () => {
   const indexHtml = fs.readFileSync(

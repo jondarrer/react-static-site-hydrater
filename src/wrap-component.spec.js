@@ -1,5 +1,5 @@
 /* global describe it expect */
-import wrapComponent from './wrap-component';
+const wrapComponent = require('./wrap-component');
 
 describe('wrapComponent', () => {
   it('should wrap 1 component', () => {

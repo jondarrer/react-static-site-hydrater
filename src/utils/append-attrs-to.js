@@ -16,5 +16,4 @@ const attrsToObject = (attrs) => {
     }, {});
 };
 
-export default appendAttrsTo;
-export { appendAttrsTo, attrsToObject };
+module.exports = { appendAttrsTo, attrsToObject };

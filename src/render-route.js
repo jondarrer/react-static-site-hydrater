@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
-import { parse } from 'node-html-parser';
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const { StaticRouter } = require('react-router-dom');
+const { HelmetProvider } = require('react-helmet-async');
+const { parse } = require('node-html-parser');
 
-import { appendChildTo, appendAttrsTo } from './utils';
+const { appendChildTo, appendAttrsTo } = require('./utils');
 
 const renderRoute = (route, indexHtml, Component) => {
   const helmetContext = {};
@@ -46,4 +46,4 @@ const renderRoute = (route, indexHtml, Component) => {
     );
 };
 
-export default renderRoute;
+module.exports = renderRoute;
