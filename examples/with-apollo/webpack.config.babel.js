@@ -1,6 +1,6 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactStaticSiteHydrater = require('../../').default;
+const ReactStaticSiteHydrater = require('../../');
 
 const App = require('./src/app');
 const client = require('./src/client');
