@@ -9,11 +9,20 @@ import { appendChildTo, appendAttrsTo } from './utils';
 const renderRoute = (route, indexHtml, Component) => {
   const helmetContext = {};
   const renderedComponent = ReactDOMServer.renderToString(
-    <HelmetProvider context={helmetContext}>
-      <StaticRouter location={route} context={{}}>
-        <Component />
-      </StaticRouter>
-    </HelmetProvider>
+    React.createElement(
+      HelmetProvider,
+      {
+        context: helmetContext,
+      },
+      React.createElement(
+        StaticRouter,
+        {
+          location: route,
+          context: {},
+        },
+        React.createElement(Component)
+      )
+    )
   );
   const root = parse(indexHtml);
   const { helmet } = helmetContext;
@@ -29,14 +38,12 @@ const renderRoute = (route, indexHtml, Component) => {
     const body = root.querySelector('body');
     appendAttrsTo(body, helmet, 'body');
   }
-  return (
-    root
-      .toString()
-      .replace(
-        '<div id="root"></div>',
-        `<div id="root">${renderedComponent}</div>`
-      )
-  );
+  return root
+    .toString()
+    .replace(
+      '<div id="root"></div>',
+      `<div id="root">${renderedComponent}</div>`
+    );
 };
 
 export default renderRoute;

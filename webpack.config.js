@@ -15,16 +15,6 @@ module.exports = {
     umdNamedDefine: true,
     devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]', /// Map to source with absolute file path not webpack:// protocol
   },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        use: ['babel-loader'],
-        include: resolve(__dirname, 'src'),
-        exclude: /node_modules/,
-      },
-    ],
-  },
   resolve: {
     fallback: {
       net: false,

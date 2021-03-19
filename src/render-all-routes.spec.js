@@ -7,7 +7,7 @@ jest.mock('./render-route');
 
 describe('renderAllRoutes', () => {
   const indexHtml = '<html><body><div id="root"></div></body></html>';
-  const component = <div />;
+  const component = React.createElement('div');
 
   beforeEach(() => {
     renderRoute.mockClear();

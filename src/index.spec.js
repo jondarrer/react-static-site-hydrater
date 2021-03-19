@@ -66,7 +66,7 @@ describe('ReactStaticSiteHydrater', () => {
       });
       const sut = new ReactStaticSiteHydrater({
         routes: ['/', '/about'],
-        component: () => <div />,
+        component: () => React.createElement('div'),
         baseFilename,
       });
       sut.apply(compiler);
@@ -95,7 +95,7 @@ describe('ReactStaticSiteHydrater', () => {
       });
       const sut = new ReactStaticSiteHydrater({
         routes: ['/', '/about'],
-        component: () => <div />,
+        component: () => React.createElement('div'),
         baseFilename,
         plugins: ['react-router'],
       });

@@ -23,19 +23,24 @@ describe('renderRoute', () => {
   );
 
   describe('without react-helmet-async', () => {
-    const Component = () => (
-      <Switch>
-        <Route path="/" exact>
-          <h1>index-content</h1>
-        </Route>
-        <Route path="/about">
-          <h1>about-content</h1>
-        </Route>
-        <Route>
-          <h1>not-found</h1>
-        </Route>
-      </Switch>
-    );
+    const Component = () =>
+      React.createElement(Switch, null, [
+        React.createElement(
+          Route,
+          { path: '/', exact: true, key: '1' },
+          React.createElement('h1', null, 'index-content')
+        ),
+        React.createElement(
+          Route,
+          { path: '/about', key: '2' },
+          React.createElement('h1', null, 'about-content')
+        ),
+        React.createElement(
+          Route,
+          { path: '/', key: '3' },
+          React.createElement('h1', null, 'not-found')
+        ),
+      ]);
 
     it('should render the index route for /', () => {
       const route = '/';
@@ -72,48 +77,66 @@ describe('renderRoute', () => {
   });
 
   describe('with react-helmet-async', () => {
-    const Component = () => (
-      <Switch>
-        <Route path="/" exact>
-          <Helmet>
-            <html lang="en"></html>
-            <body className="abc"></body>
-            <title>Index</title>
-            <meta name="description" content="index" />
-            <link rel="alternate" href="http://example.com/" hreflang="en" />
-          </Helmet>
-          <h1>index-content</h1>
-        </Route>
-        <Route path="/about">
-          <Helmet>
-            <html lang="en"></html>
-            <body className="abc"></body>
-            <title>About</title>
-            <meta name="description" content="about" />
-            <link
-              rel="alternate"
-              href="http://example.com/about"
-              hreflang="en"
-            />
-          </Helmet>
-          <h1>about-content</h1>
-        </Route>
-        <Route>
-          <Helmet>
-            <html lang="en"></html>
-            <body className="abc"></body>
-            <title>Not Found</title>
-            <meta name="description" content="not-found" />
-            <link
-              rel="alternate"
-              href="http://example.com/unknown"
-              hreflang="en"
-            />
-          </Helmet>
-          <h1>not-found</h1>
-        </Route>
-      </Switch>
-    );
+    const Component = () =>
+      React.createElement(Switch, null, [
+        React.createElement(Route, { path: '/', exact: true, key: '1' }, [
+          React.createElement(Helmet, { key: '1' }, [
+            React.createElement('html', { lang: 'en', key: '1' }),
+            React.createElement('body', { className: 'abc', key: '2' }),
+            React.createElement('title', { key: '3' }, 'Index'),
+            React.createElement('meta', {
+              name: 'description',
+              content: 'index',
+              key: '4',
+            }),
+            React.createElement('link', {
+              rel: 'alternate',
+              href: 'http://example.com/',
+              hreflang: 'en',
+              key: '5',
+            }),
+          ]),
+          React.createElement('h1', { key: '2' }, 'index-content'),
+        ]),
+        React.createElement(Route, { path: '/about', key: '2' }, [
+          React.createElement(Helmet, { key: '1' }, [
+            React.createElement('html', { lang: 'en', key: '1' }),
+            React.createElement('body', { className: 'abc', key: '2' }),
+            React.createElement('title', { key: '3' }, 'About'),
+            React.createElement('meta', {
+              name: 'description',
+              content: 'about',
+              key: '4',
+            }),
+            React.createElement('link', {
+              rel: 'alternate',
+              href: 'http://example.com/about',
+              hreflang: 'en',
+              key: '5',
+            }),
+          ]),
+          React.createElement('h1', { key: '2' }, 'about-content'),
+        ]),
+        React.createElement(Route, { path: '/', key: '3' }, [
+          React.createElement(Helmet, { key: '1' }, [
+            React.createElement('html', { lang: 'en', key: '1' }),
+            React.createElement('body', { className: 'abc', key: '2' }),
+            React.createElement('title', { key: '3' }, 'Not Found'),
+            React.createElement('meta', {
+              name: 'description',
+              content: 'not-found',
+              key: '4',
+            }),
+            React.createElement('link', {
+              rel: 'alternate',
+              href: 'http://example.com/unknown',
+              hreflang: 'en',
+              key: '5',
+            }),
+          ]),
+          React.createElement('h1', { key: '2' }, 'not-found'),
+        ]),
+      ]);
 
     it('should render the index route for /', () => {
       const route = '/';

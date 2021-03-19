@@ -8,18 +8,19 @@ const jsxify = (element, key) => {
   const { children, ...props } = element.props;
 
   if (Array.isArray(children)) {
-    return (
-      <Component
-        {...props}
-        children={children.map((child, index) => jsxify(child, index))}
-      />
-    );
+    return React.createElement(Component, {
+      ...props,
+      children: children.map((child, index) => jsxify(child, index)),
+    });
   } else if (typeof children === 'string') {
-    return <Component {...props} children={children} />;
+    return React.createElement(Component, { ...props, children });
   } else if (typeof children === 'object') {
-    return <Component {...props} children={jsxify(children)} />;
+    return React.createElement(Component, {
+      ...props,
+      children: jsxify(children),
+    });
   } else {
-    return <Component {...props} />;
+    return React.createElement(Component, { ...props });
   }
 };
 

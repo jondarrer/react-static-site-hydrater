@@ -15,7 +15,7 @@ describe('jsxify', () => {
           prop1: 123,
         },
       })
-    ).toStrictEqual(<Component1 prop1={123} />);
+    ).toStrictEqual(React.createElement(Component1, { prop1: 123 }));
   });
   it('should jsxify a simple element', () => {
     expect(
@@ -25,7 +25,7 @@ describe('jsxify', () => {
           children: 'Are you sure?',
         },
       })
-    ).toStrictEqual(<p children={'Are you sure?'}></p>);
+    ).toStrictEqual(React.createElement('p', null, 'Are you sure?'));
   });
   it.skip('should jsxify nested elements', () => {
     const Component1 = jest.fn();
@@ -55,12 +55,21 @@ describe('jsxify', () => {
         },
       })
     ).toStrictEqual(
-      <Component2
-        prop3={123}
-        children={
-          <Component2 prop2={123} children={<Component1 prop1={123} />} />
-        }
-      />
+      React.createElement(
+        Component2,
+        {
+          prop3: 123,
+        },
+        React.createElement(
+          Component2,
+          {
+            prop2: 123,
+          },
+          React.createElement(Component1, {
+            prop1: 123,
+          })
+        )
+      )
     );
   });
 });
