@@ -95,10 +95,10 @@ above:
 
 ## Options
 
-|      Name       |                Type                | Default | Description                                                                                                                         |
-| :-------------: | :--------------------------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------- |
-|  **`routes`**   |         `{Array<String>}`          |   []    | The routes to build (e.g. ['/', '/about', '/contact-us'])                                                                           |
-| **`component`** |           `{Component}`            |         | The React component with the routing/Switch, but not the Router                                                                     |
+|      Name       |                 Type                  | Default | Description                                                                                                                         |
+| :-------------: | :-----------------------------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------- |
+|  **`routes`**   |           `{Array<String>}`           |   []    | The routes to build (e.g. ['/', '/about', '/contact-us'])                                                                           |
+| **`component`** |             `{Component}`             |         | The React component with the routing/Switch, but not the Router                                                                     |
 |  **`plugins`**  | `{Array<String or PluginDescriptor>}` |         | List of plugins to use to create the static content (e.g. `['react-router', 'helmet', ['apollo', { client: new ApolloClient() }]]`) |
 
 ## Remaining features to be implemented
@@ -124,14 +124,6 @@ Tests are run using Jest.
 
 ```bash
 npm test
-```
-
-### Build
-
-```bash
-# Include mode=development to build in development mode
-# https://webpack.js.org/configuration/mode/
-npm run build -- --mode=development 
 ```
 
 ### Publish
