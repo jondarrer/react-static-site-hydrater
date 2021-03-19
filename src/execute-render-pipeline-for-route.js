@@ -55,7 +55,11 @@ const executeRenderPipelineForRoute = async (
             options,
           ]);
         } else {
-          Reflect.apply(plugin['prepare'], null, [context, wrapComponent]);
+          Reflect.apply(plugin['prepare'], null, [
+            context,
+            wrapComponent,
+            options,
+          ]);
         }
         break;
       case 'preRender':
