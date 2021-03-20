@@ -4,7 +4,7 @@ const jsxify = (element, key) => {
   if (!element) return null;
   if (typeof element === 'string') return element;
   const Component = element.type;
-  if (key) element.props.key = key;
+  if (key !== undefined) element.props.key = key;
   const { children, ...props } = element.props;
 
   if (Array.isArray(children)) {
