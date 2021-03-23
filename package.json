@@ -26,6 +26,9 @@
     "url": "https://github.com/jondarrer/react-static-site-hydrater/issues"
   },
   "homepage": "https://github.com/jondarrer/react-static-site-hydrater#readme",
+  "dependencies": {
+    "node-html-parser": "^3.1.0"
+  },
   "devDependencies": {
     "@types/jest": "26.0.20",
     "eslint": "7.22.0",
@@ -35,16 +38,15 @@
     "prettier": "2.2.1"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.0.0",
-    "graphql": "^15.0.0",
     "html-webpack-plugin": "^5.0.0",
     "prop-types": "^15.0.0",
     "react": ">16.0.0",
-    "react-dom": ">16.0.0",
+    "react-dom": ">16.0.0"
+  },
+  "optionalDependencies": {
+    "@apollo/client": "^3.0.0",
+    "graphql": "^15.0.0",
     "react-helmet-async": "^1.0.0",
     "react-router-dom": "^5.0.0"
-  },
-  "dependencies": {
-    "node-html-parser": "^3.1.0"
   }
 }
