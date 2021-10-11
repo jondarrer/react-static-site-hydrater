@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/jondarrer/react-static-site-hydrater#readme",
   "dependencies": {
-    "node-html-parser": "^3.1.0"
+    "node-html-parser": "^5.0.0"
   },
   "devDependencies": {
     "@types/jest": "26.0.24",
