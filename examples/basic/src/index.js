@@ -9,4 +9,4 @@ const BasicExample = () => (
   </BrowserRouter>
 );
 
-module.exports = BasicExample;
+module.exports = { BasicExample, App };

@@ -26,6 +26,7 @@ module.exports = {
       routes: ['/', '/about', '/404-not-found'],
       component: App,
       plugins: ['react-router'],
+      app: resolve(__dirname, './src/my-app'),
     }),
   ],
 };
