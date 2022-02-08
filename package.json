@@ -47,6 +47,6 @@
     "@apollo/client": "^3.0.0",
     "graphql": "^15.0.0",
     "react-helmet-async": "^1.0.0",
-    "react-router-dom": "^5.0.0"
+    "react-router-dom": "^6.0.0"
   }
 }
