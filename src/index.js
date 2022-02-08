@@ -11,7 +11,13 @@ class ReactStaticSiteHydrater {
     compiler.hooks.make.tapPromise(
       'ReactStaticSiteHydrater',
       async (compilation) => {
-        const { routes, component, plugins } = this.options;
+        const { routes, componentPath, plugins } = this.options;
+        if (!componentPath) {
+          new Error(
+            'ReactStaticSiteHydrater now requires the path to the application component'
+          );
+        }
+        const component = require(componentPath);
 
         // Hook into the html-webpack-plugin processing and add the html
         // Inspired by https://github.com/jantimon/favicons-webpack-plugin/blob/master/src/index.js

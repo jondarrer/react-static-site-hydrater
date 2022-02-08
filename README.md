@@ -39,7 +39,7 @@ module.exports = {
     new HtmlWebpackPlugin(),
     new ReactStaticSiteHydrater({
       routes: ['/', '/about', '/contact-us'],
-      component: App,
+      componentPath: App,
     }),
   ],
 };
@@ -95,11 +95,11 @@ above:
 
 ## Options
 
-|      Name       |                 Type                  | Default | Description                                                                                                                         |
-| :-------------: | :-----------------------------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------- |
-|  **`routes`**   |           `{Array<String>}`           |   []    | The routes to build (e.g. ['/', '/about', '/contact-us'])                                                                           |
-| **`component`** |             `{Component}`             |         | The React component with the routing/Switch, but not the Router                                                                     |
-|  **`plugins`**  | `{Array<String or PluginDescriptor>}` |         | List of plugins to use to create the static content (e.g. `['react-router', 'helmet', ['apollo', { client: new ApolloClient() }]]`) |
+|        Name         |                 Type                  | Default | Description                                                                                                                         |
+| :-----------------: | :-----------------------------------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------- |
+|    **`routes`**     |           `{Array<String>}`           |   []    | The routes to build (e.g. ['/', '/about', '/contact-us'])                                                                           |
+| **`componentPath`** |              `{String}`               |         | The full path to the application's main component with the routing/Switch, but not the Router                                       |
+|    **`plugins`**    | `{Array<String or PluginDescriptor>}` |         | List of plugins to use to create the static content (e.g. `['react-router', 'helmet', ['apollo', { client: new ApolloClient() }]]`) |
 
 ## Remaining features to be implemented
 

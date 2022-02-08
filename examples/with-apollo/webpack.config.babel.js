@@ -2,7 +2,6 @@ const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactStaticSiteHydrater = require('../../');
 
-const App = require('./src/app');
 const client = require('./src/client');
 
 module.exports = {
@@ -25,7 +24,7 @@ module.exports = {
     new HtmlWebpackPlugin({ filename: 'default.html' }),
     new ReactStaticSiteHydrater({
       routes: ['/', '/about', '/404-not-found'],
-      component: App,
+      componentPath: resolve(__dirname, './src/app.js'),
       plugins: ['react-router', ['apollo', { client }]],
     }),
   ],

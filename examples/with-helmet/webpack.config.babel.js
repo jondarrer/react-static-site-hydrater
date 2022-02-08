@@ -24,7 +24,7 @@ module.exports = {
     new HtmlWebpackPlugin({ filename: 'default.html' }),
     new ReactStaticSiteHydrater({
       routes: ['/', '/about', '/404-not-found'],
-      component: App,
+      componentPath: resolve(__dirname, './src/app.js'),
       plugins: ['react-router', 'helmet'],
     }),
   ],

@@ -1,5 +1,5 @@
 /* global describe it expect */
-const React = require('react');
+const { resolve } = require('path');
 
 const ReactStaticSiteHydrater = require('./');
 
@@ -66,7 +66,7 @@ describe('ReactStaticSiteHydrater', () => {
       });
       const sut = new ReactStaticSiteHydrater({
         routes: ['/', '/about'],
-        component: () => React.createElement('div'),
+        componentPath: resolve(__dirname, './test-assets/app.js'),
         baseFilename,
       });
       sut.apply(compiler);
@@ -95,7 +95,7 @@ describe('ReactStaticSiteHydrater', () => {
       });
       const sut = new ReactStaticSiteHydrater({
         routes: ['/', '/about'],
-        component: () => React.createElement('div'),
+        componentPath: resolve(__dirname, './test-assets/app.js'),
         baseFilename,
         plugins: ['react-router'],
       });
