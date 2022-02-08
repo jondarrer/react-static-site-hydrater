@@ -1,9 +1,10 @@
 language: node_js
 node_js:
-  - 14.16.0
+- 14.16.0
 install:
-  - npm ci
-  - HUSKY_SKIP_INSTALL=1 npm i --no-save react react-dom react-router-dom react-helmet-async @apollo/client@^3.0.0 graphql@^15.0.0 html-webpack-plugin@^5.0.0 subscriptions-transport-ws@^0.9.0
+- npm ci
+- HUSKY_SKIP_INSTALL=1 npm i --no-save react react-dom react-router-dom react-helmet-async
+  @apollo/client@^3.0.0 graphql@^15.0.0 html-webpack-plugin@^5.0.0 subscriptions-transport-ws@^0.9.0
 deploy:
   provider: npm
   skip_cleanup: true
@@ -11,4 +12,4 @@ deploy:
   on:
     tags: true
   api_key:
-    secure: P9pZTiAGWCM2k7ZG7Mamtyp/tlGLN6dp518Rf07mAN7u6vBXe3TOn6qIcCIBOY899+zodyxEfvdaeImdcyCTUwSpi8dkMxe6LZMfLONF3eUia4Gpc8VKAdWQPb76g/oxgki21nst/H+bUP0wQYlRlAqxSNhVK/Sg5O+mNI55a0+OcGaLxriZOzdV0RRdcDjkxUX+tNZu4S6HIBcJdp9ZCjxDCkSxOFNp9w3XcIgsZnpAD1Hfkx3A793nxSMHKIKHSoK3m49OAx5T0111W5ITWTscse5bpjdnW/rTP56b1w6jrCnrWdQHPHdKUVGbpvWkdlGf0F4Fb02o3nfB75xjvHzKpRtS0Cgp9UqWGtNIuBUcrK0nAak47QLxm+aPZyzo3aasrOiCsl1B0YYQ0hBk9ZSJFsIpBkIaqeDHWba6EMgpU/kNP/A0G9JluoNgDU05ceCrBUV3BmqpnVS4ahFDrJ1vjWdD9jss0lTi/LmbeLrJi3/iItmABfY/rY5TXB2MlAqljo/Zbt3roCvynpyAxY7+r+9Lj0cO/7/zNHvwsocrJAZp/V1Ws5KnjpfIbZ+SJ/ughjy0UcLcMH0ScLDpv9Hh5/I8zHYINWMTXCT8ajlRdHWExMCJdR6LLk2J5nGCheby2YJuoR4eNZMSnCMQXVq2iJ15eSE7bfnyZwoujFw=
+    secure: z4SYLczSENeYf6o/psuJU7l0MWDmh/SQHbUP7zjgMOppfIs5vw6GFrvHocEotjxsqCCsrX4TCN593TdckUAee7trdz69i3sWsme7LZBeCJUHJVeABDzNiwfPJyPrM8r85wvMxcCyVeE127NIUZPIR5fshE6BfhHvWBBQ/6GQ2thnUvlZso7UufvarekjlXMpl4p/LOKfPpCk8d1kHumJFgeGE1JHcHXaJjGD3ifjiqH0sZz7Ya0Ba+VB0WMzO2IPWCWV8byjiIculS4iyCqyXukFgM/T4bb2sc0W2LhS/WaX9HbUkkKYlqIcVEKtZWE1awKLuA1cpMlf08npKXPT6yg0MjHxkJe5Lr8+Eyu0I1SRB63BqQN9sseNx8WPwbMiaAsGDyyknZ5xxlPvvrW9Mt/ZU4DIAgmnY9/g/16Xfq4g9hBF77nUrqYFG0sY2Y/UZrwjzdmhf/2J66GVohxqofH07SBDz7JL7HzThQsHieqU2e7g8SXr2cYdU0kI/yXQCkcUZ5MXZt3qUdYqDFP+UNLqnxZ+LtAsQI+K2S8mav87yjECSjpEvTri9niRevEDF3RZaxVdnJUeY2mfdH/ScIzrzrVAvAYDFhH5fn7q1T5+8wFP9z+bZRQPZ9N7Iw3zZOoIZMrJF3oikjx7RhapDWL6jC7SHzIrfaehLmlKxas=
