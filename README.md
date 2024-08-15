@@ -2,8 +2,6 @@
 
 ## 🚧 This plugin is currently a work in progress 🚧
 
-[![Build Status](https://travis-ci.com/jondarrer/react-static-site-hydrater.svg?branch=master)](https://travis-ci.com/jondarrer/react-static-site-hydrater)
-
 **Due to this being a work in progress, it is necessary to either write your
 application in ES5 without import/export, or to use Babel to transform your code
 prior to Webpack being called. This is because it is currently necessary to
@@ -134,10 +132,10 @@ npm test
 
 ### Publish
 
-Travis CI is the integration tool used to publish the package. It will publish
+Github Actions is the integration tool used to publish the package. It will publish
 new versions to [npm](https://docs.npmjs.com/cli/version), which can be created
 and tagged in Git using the [npm version](https://docs.npmjs.com/cli/version)
-tool:
+tool, and a new Github realse must be manually created to start things off:
 
 ```bash
 npm version {patch/minor/major} -m ":bookmark: Update release version to %s"
