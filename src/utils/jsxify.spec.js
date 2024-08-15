@@ -27,7 +27,27 @@ describe('jsxify', () => {
       })
     ).toStrictEqual(React.createElement('p', null, 'Are you sure?'));
   });
-  it.only('should jsxify nested elements', () => {
+  it.skip('should jsxify a function', () => {
+    expect(
+      jsxify({
+        type: () => 'p',
+        props: {
+          children: 'Are you sure?',
+        },
+      })
+    ).toStrictEqual(React.createElement('type', null, 'Are you sure?'));
+  });
+  it.skip('should jsxify an ESM default function', () => {
+    expect(
+      jsxify({
+        type: { default: () => 'p' },
+        props: {
+          children: 'Are you sure?',
+        },
+      })
+    ).toStrictEqual(React.createElement('default', null, 'Are you sure?'));
+  });
+  it('should jsxify nested elements', () => {
     const Component1 = jest.fn();
     const Component2 = jest.fn();
     const Component3 = jest.fn();

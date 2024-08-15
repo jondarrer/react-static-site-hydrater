@@ -3,7 +3,12 @@ const React = require('react');
 const jsxify = (element, key) => {
   if (!element) return null;
   if (typeof element === 'string') return element;
-  const Component = element.type;
+  let Component = element.type;
+
+  // Handle components which are ESM default exports
+  if (Component && Component.default) {
+    Component = Component.default;
+  }
   if (key !== undefined) element.props.key = key;
   const { children, ...props } = element.props;
 
