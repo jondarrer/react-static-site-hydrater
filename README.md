@@ -32,14 +32,12 @@ to generate. It works in conjunction with
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactStaticSiteHydrater = require('react-static-site-hydrater').default;
 
-const App = require('./src/app');
-
 module.exports = {
   plugins: [
     new HtmlWebpackPlugin(),
     new ReactStaticSiteHydrater({
       routes: ['/', '/about', '/contact-us'],
-      componentPath: App,
+      componentPath: './src/app.js',
     }),
   ],
 };
@@ -109,7 +107,7 @@ include the **firebase** plugin in the `plugins` option:
 ```js
   new ReactStaticSiteHydrater({
     routes: ['/', '/about', '/contact-us'],
-    component: App,
+    componentPath: './src/app.js',
     plugins: [..., 'firebase'],
   })
 ```
